@@ -67,7 +67,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="632.0" prefWidth="499.0" style="-fx-background-color: white;">
                <children>
-                  <VBox prefWidth="500.0" />
+                  <VBox fx:id="UsersContainer" prefWidth="500.0" />
                </children>
             </AnchorPane>
         </content>

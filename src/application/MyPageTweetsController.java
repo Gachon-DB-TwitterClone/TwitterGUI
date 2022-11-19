@@ -154,14 +154,15 @@ public class MyPageTweetsController implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		
-		
-		u_id.setText('@' + LocalUser.id);
+
+
+
+		Model model = new Model();
+		u_id.setText(LocalUser.id);
 		u_name.setText(LocalUser.name);
-		following.setText(LocalUser.following);
-		follower.setText(LocalUser.follower);
-		
+		following.setText(String.valueOf((model.getFollowingById(LocalUser.seeing_userid).size())));
+		follower.setText(String.valueOf((model.getFollowerById(LocalUser.seeing_userid).size())));
+
 		
 		// set Tweets 
 		// fill Tweets
@@ -175,7 +176,7 @@ public class MyPageTweetsController implements Initializable {
 
 				VBox newBox = fxmlLoader.load();
 				PostController postController = fxmlLoader.getController();
-				postController.setPost(post.getNickname(), post.getUser_id(), post.getCaption(), post.getImg(), post.getLike_num(), post.getCommnet_num());
+				postController.setPost(post.getNickname(), post.getUser_id(), post.getCaption(), post.getImg(), post.getLike_num(), post.getCommnet_num(), post.getRetweet_num());
 
 				PostsContainer.getChildren().add(newBox);
 

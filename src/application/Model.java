@@ -192,8 +192,6 @@ public class Model {
                 count++;
             }
 
-            // set
-            LocalUser.following = String.valueOf(count);
 
             // show follower
             // System.out.println("==== Your followers ====");
@@ -207,9 +205,6 @@ public class Model {
                 // System.out.println(count + ". " + result);
                 count++;
             }
-
-            // set
-            LocalUser.follower = String.valueOf(count);
 
 
         } catch (Exception e) {
@@ -278,14 +273,18 @@ public class Model {
                     username = rs2.getString("name");
                 }
 
+                int p_num_of_likes = rs.getInt("num_of_likes");
+                int p_num_of_comments = rs.getInt("num_of_comments");
+                int p_num_of_retweets= rs.getInt("num_of_retweets");
+
                 Post a_post = new Post();
                 a_post.setNickname(username);
                 a_post.setUser_id(p_u_id);
                 a_post.setCaption(p_content);
                 a_post.setDate(p_date);
-//				a_post.setLike_num(0);
-//				a_post.setCommnet_num(0);
-//				a_post.setRetweet_num(0);
+				a_post.setLike_num(p_num_of_likes);
+				a_post.setCommnet_num(p_num_of_comments);
+				a_post.setRetweet_num(p_num_of_retweets);
                 ls.add(a_post);
 
             }
@@ -347,14 +346,18 @@ public class Model {
                     username = rs2.getString("name");
                 }
 
+                int p_num_of_likes = rs.getInt("num_of_likes");
+                int p_num_of_comments = rs.getInt("num_of_comments");
+                int p_num_of_retweets= rs.getInt("num_of_retweets");
+
                 Post a_post = new Post();
                 a_post.setNickname(username);
                 a_post.setUser_id(p_u_id);
                 a_post.setCaption(p_content);
                 a_post.setDate(p_date);
-//				a_post.setLike_num(0);
-//				a_post.setCommnet_num(0);
-//				a_post.setRetweet_num(0);
+                a_post.setLike_num(p_num_of_likes);
+                a_post.setCommnet_num(p_num_of_comments);
+                a_post.setRetweet_num(p_num_of_retweets);
                 ls.add(a_post);
 
             }
@@ -405,14 +408,18 @@ public class Model {
                     username = rs2.getString("name");
                 }
 
+                int p_num_of_likes = rs.getInt("num_of_likes");
+                int p_num_of_comments = rs.getInt("num_of_comments");
+                int p_num_of_retweets = rs.getInt("num_of_retweets");
+
                 Post a_post = new Post();
                 a_post.setNickname(username);
                 a_post.setUser_id(p_u_id);
                 a_post.setCaption(p_content);
                 a_post.setDate(p_date);
-//				a_post.setLike_num(0);
-//				a_post.setCommnet_num(0);
-//				a_post.setRetweet_num(0);
+                a_post.setLike_num(p_num_of_likes);
+                a_post.setCommnet_num(p_num_of_comments);
+                a_post.setRetweet_num(p_num_of_retweets);
                 ls.add(a_post);
 
             }
@@ -443,6 +450,79 @@ public class Model {
 
                 User newUser = new User();
                 newUser.setName(name);
+                newUser.setUser_id(user_id);
+
+                ls.add(newUser);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ls;
+    }
+    public List<User> getFollowerById(String userid) {
+        List<User> ls = new ArrayList<User>();
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost/twitter";
+            String sql_id = "root", pw = "12341234";
+            Connection con = DriverManager.getConnection(url, sql_id, pw);
+            String query1 = "select * from follows where target_user_id = ?;";
+            PreparedStatement ps1 = con.prepareStatement(query1);
+            ps1.setString(1, userid);
+            ResultSet rs = ps1.executeQuery();
+            while (rs.next()) {
+                String user_id = rs.getString("user_id");
+
+                String query2 = "SELECT name FROM User WHERE user_id =?;";
+                PreparedStatement ps2 = con.prepareStatement(query2);
+                ps2.setString(1, user_id);
+                ResultSet rs2 = ps2.executeQuery();
+
+                String username = null;
+                if (rs2.next()) {
+                    username = rs2.getString("name");
+                }
+
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ls;
+    }
+    public List<User> getFollowingById(String userid) {
+        List<User> ls = new ArrayList<User>();
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost/twitter";
+            String sql_id = "root", pw = "12341234";
+            Connection con = DriverManager.getConnection(url, sql_id, pw);
+            String query1 = "select * from follows where user_id = ?;";
+            PreparedStatement ps1 = con.prepareStatement(query1);
+            ps1.setString(1, userid);
+            ResultSet rs = ps1.executeQuery();
+            while (rs.next()) {
+                String user_id = rs.getString("target_user_id");
+
+                String query2 = "SELECT name FROM User WHERE user_id =?;";
+                PreparedStatement ps2 = con.prepareStatement(query2);
+                ps2.setString(1, user_id);
+                ResultSet rs2 = ps2.executeQuery();
+
+                String username = null;
+                if (rs2.next()) {
+                    username = rs2.getString("name");
+                }
+
+                User newUser = new User();
+                newUser.setName(username);
                 newUser.setUser_id(user_id);
 
                 ls.add(newUser);

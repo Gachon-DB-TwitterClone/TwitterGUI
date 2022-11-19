@@ -20,7 +20,6 @@ import javafx.stage.Stage;
 public class SearchController implements Initializable {
 
 
-	public VBox UsersContainer;
 	// 미완성 어떻게 할까 엔터로 서치
 	@FXML
 	private TextField s_u_id;
@@ -49,6 +48,7 @@ public class SearchController implements Initializable {
 
 
 
+	public VBox UsersContainer;
 
 	public List<User> getUsers(String userid){
 		List<User> users = new ArrayList<User>();

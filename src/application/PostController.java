@@ -28,6 +28,7 @@ public class PostController {
     public Label num_of_likes;
     @FXML
     public Label num_of_comments;
+    public Label num_of_retweets;
     @FXML
     public ImageView iLike;
     @FXML
@@ -53,6 +54,7 @@ public class PostController {
 
 
     public void switchToUserInfo(MouseEvent event) throws IOException {
+        LocalUser.seeing_userid = user_id.getText();
 
         SceneData.PrevScene = ((Node) event.getSource()).getScene();
 
@@ -77,7 +79,7 @@ public class PostController {
         stage.show();
     }
 
-    public void setPost(String name, String user_id, String content, Image img, Integer num_of_likes, Integer num_of_comments) {
+    public void setPost(String name, String user_id, String content, Image img, Integer num_of_likes, Integer num_of_comments, Integer num_of_retweets) {
         this.name.setText(name);
         this.user_id.setText(user_id);
         this.content.setText(content);
@@ -89,5 +91,6 @@ public class PostController {
         }
         this.num_of_likes.setText(String.valueOf(num_of_likes));
         this.num_of_comments.setText(String.valueOf(num_of_comments));
+        this.num_of_retweets.setText(String.valueOf(num_of_retweets));
     }
 }

@@ -102,7 +102,7 @@
                               <Image url="@like.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" visible="false">
                            <image>
                               <Image url="@already_like.png" />
                            </image>
@@ -138,7 +138,7 @@
                               <Image url="@retweet.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" visible="false">
                            <image>
                               <Image url="@complete_retweet.png" />
                            </image>
@@ -147,15 +147,15 @@
                   </StackPane>
                </graphic>
             </Button>
-            <Label fx:id="num_of_likes" layoutX="97.0" layoutY="16.0" text="0">
+            <Label fx:id="num_of_likes" layoutX="97.0" layoutY="16.0" text="-1">
                <font>
                   <Font name="Calibri" size="19.0" />
                </font></Label>
-            <Label fx:id="num_of_comments" layoutX="255.0" layoutY="16.0" text="0">
+            <Label fx:id="num_of_comments" layoutX="255.0" layoutY="16.0" text="-1">
                <font>
                   <Font name="Calibri" size="19.0" />
                </font></Label>
-            <Label layoutX="409.0" layoutY="16.0" text="0">
+            <Label fx:id="num_of_retweets" layoutX="409.0" layoutY="16.0" text="-1">
                <font>
                   <Font name="Calibri" size="19.0" />
                </font></Label>

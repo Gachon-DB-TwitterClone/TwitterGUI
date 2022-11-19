@@ -35,6 +35,7 @@ public class MainpageController implements Initializable {
     public void switchToMy(ActionEvent event) throws IOException {
 
 //			SceneData.MainScene = ((Node)event.getSource()).getScene();
+        LocalUser.seeing_userid = LocalUser.id;
 
         root = FXMLLoader.load(getClass().getResource("myinfo-tweet.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -85,7 +86,7 @@ public class MainpageController implements Initializable {
 
                 VBox newBox = fxmlLoader.load();
                 PostController postController = fxmlLoader.getController();
-                postController.setPost(post.getNickname(), post.getUser_id(), post.getCaption(), post.getImg(), post.getLike_num(), post.getCommnet_num());
+                postController.setPost(post.getNickname(), post.getUser_id(), post.getCaption(), post.getImg(), post.getLike_num(), post.getCommnet_num(), post.getRetweet_num());
 
                 PostsContainer.getChildren().add(newBox);
 

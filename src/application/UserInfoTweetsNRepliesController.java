@@ -65,7 +65,7 @@ public class UserInfoTweetsNRepliesController {
 	}
 	
 	
-	public void switchToFollowing(MouseEvent event) throws IOException{
+	public void switchToFollowing(ActionEvent event) throws IOException{
 		
 		SceneData.PrevScene = ((Node)event.getSource()).getScene();
 		
@@ -76,7 +76,7 @@ public class UserInfoTweetsNRepliesController {
 		stage.show();
 	}
 	
-	public void switchToFollowers(MouseEvent event) throws IOException{
+	public void switchToFollowers(ActionEvent event) throws IOException{
 		
 		SceneData.PrevScene = ((Node)event.getSource()).getScene();
 		

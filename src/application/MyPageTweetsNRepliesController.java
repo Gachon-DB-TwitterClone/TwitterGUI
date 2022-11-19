@@ -119,11 +119,11 @@ public class MyPageTweetsNRepliesController implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		Model model = new Model();
 		u_id.setText(LocalUser.id);
 		u_name.setText(LocalUser.name);
-		following.setText(LocalUser.following);
-		follower.setText(LocalUser.follower);
-		
+		following.setText(String.valueOf((model.getFollowingById(LocalUser.seeing_userid).size())));
+		follower.setText(String.valueOf((model.getFollowerById(LocalUser.seeing_userid).size())));
 		
 		// set Tweets & replies
 		// fill Tweets & replies

@@ -7,12 +7,14 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -20,7 +22,6 @@ import javafx.stage.Stage;
 public class UserInfoLikesController implements Initializable {
 
 	public Button btnFollow;
-	public VBox PostsContainer;
 
 	public void follow(ActionEvent event) {
 		String fol = btnFollow.getText();
@@ -72,7 +73,7 @@ public class UserInfoLikesController implements Initializable {
 	}
 	
 	
-	public void switchToFollowing(MouseEvent event) throws IOException{
+	public void switchToFollowing(ActionEvent event) throws IOException{
 		
 		SceneData.PrevScene = ((Node)event.getSource()).getScene();
 		
@@ -83,7 +84,7 @@ public class UserInfoLikesController implements Initializable {
 		stage.show();
 	}
 	
-	public void switchToFollowers(MouseEvent event) throws IOException{
+	public void switchToFollowers(ActionEvent event) throws IOException{
 		
 		SceneData.PrevScene = ((Node)event.getSource()).getScene();
 		
@@ -155,14 +156,23 @@ public class UserInfoLikesController implements Initializable {
 		
 	}
 
+	@FXML
+	public Label u_id;
+	public Label u_name;
+	public Label following;
+	public Label follower;
+
+	public VBox vbox;
+
+	public VBox PostsContainer;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-//		u_id.setText(LocalUser.id);
-//		u_name.setText(LocalUser.name);
-//		following.setText(LocalUser.following);
-//		follower.setText(LocalUser.follower);
-
+		Model model = new Model();
+		u_id.setText(LocalUser.id);
+		u_name.setText(LocalUser.name);
+		following.setText(String.valueOf((model.getFollowingById(LocalUser.seeing_userid).size())));
+		follower.setText(String.valueOf((model.getFollowerById(LocalUser.seeing_userid).size())));
 
 		// set Tweets
 		// fill Tweets
@@ -181,7 +191,7 @@ public class UserInfoLikesController implements Initializable {
 
 				VBox newBox = fxmlLoader.load();
 				PostController postController = fxmlLoader.getController();
-				postController.setPost(post.getNickname(), post.getUser_id(), post.getCaption(), post.getImg(), post.getLike_num(), post.getCommnet_num());
+				postController.setPost(post.getNickname(), post.getUser_id(), post.getCaption(), post.getImg(), post.getLike_num(), post.getCommnet_num(), post.getRetweet_num());
 
 				PostsContainer.getChildren().add(newBox);
 
