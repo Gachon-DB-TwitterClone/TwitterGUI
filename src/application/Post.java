@@ -8,7 +8,7 @@ public class Post {
 
     private String nickname;
     private String user_id;
-    private String caption;
+    private String content;
     private Image img;
     private int like_num;
     private int commnet_num;
@@ -50,12 +50,12 @@ public class Post {
         this.user_id = user_id;
     }
 
-    public String getCaption() {
-        return caption;
+    public String getContent() {
+        return content;
     }
 
-    public void setCaption(String caption) {
-        this.caption = caption;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Image getImg() {

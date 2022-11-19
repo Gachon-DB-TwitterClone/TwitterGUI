@@ -280,7 +280,7 @@ public class Model {
                 Post a_post = new Post();
                 a_post.setNickname(username);
                 a_post.setUser_id(p_u_id);
-                a_post.setCaption(p_content);
+                a_post.setContent(p_content);
                 a_post.setDate(p_date);
 				a_post.setLike_num(p_num_of_likes);
 				a_post.setCommnet_num(p_num_of_comments);
@@ -354,7 +354,7 @@ public class Model {
                 Post a_post = new Post();
                 a_post.setNickname(username);
                 a_post.setUser_id(p_u_id);
-                a_post.setCaption(p_content);
+                a_post.setContent(p_content);
                 a_post.setDate(p_date);
                 a_post.setLike_num(p_num_of_likes);
                 a_post.setCommnet_num(p_num_of_comments);
@@ -417,7 +417,7 @@ public class Model {
                 Post a_post = new Post();
                 a_post.setNickname(username);
                 a_post.setUser_id(p_u_id);
-                a_post.setCaption(p_content);
+                a_post.setContent(p_content);
                 a_post.setDate(p_date);
                 a_post.setLike_num(p_num_of_likes);
                 a_post.setCommnet_num(p_num_of_comments);
@@ -449,7 +449,34 @@ public class Model {
             ps1.setString(2, userid);
             ResultSet rs = ps1.executeQuery();
             while (rs.next()) {
+                String p_id = rs.getString("post_id");
 
+                String p_u_id = rs.getString("user_id");
+                Date p_date = rs.getDate("date");
+                String p_content = rs.getString("content");
+
+                String query2 = "SELECT name FROM User WHERE user_id =?;";
+                PreparedStatement ps2 = con.prepareStatement(query2);
+                ps2.setString(1, p_u_id);
+                ResultSet rs2 = ps2.executeQuery();
+
+                String username = null;
+                if (rs2.next()) {
+                    username = rs2.getString("name");
+                }
+
+                int p_num_of_likes = rs.getInt("num_of_likes");
+                int p_num_of_comments = rs.getInt("num_of_comments");
+                int p_num_of_retweets = rs.getInt("num_of_retweets");
+
+                post.setNickname(username);
+                post.setUser_id(p_u_id);
+                post.setContent(p_content);
+                post.setDate(p_date);
+                post.setLike_num(p_num_of_likes);
+                post.setCommnet_num(p_num_of_comments);
+                post.setRetweet_num(p_num_of_retweets);
+                post.setPostid(p_id);
             }
 
         } catch (Exception e) {

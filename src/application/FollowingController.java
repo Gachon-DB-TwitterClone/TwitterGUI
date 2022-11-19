@@ -28,10 +28,10 @@ public class FollowingController implements Initializable {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-	 
+
 	public void switchPrevScene(ActionEvent event) throws IOException{
-		
-    	if (SceneData.PrevScene == null) {
+
+		if (SceneData.PrevScene == null) {
 			root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
@@ -44,7 +44,23 @@ public class FollowingController implements Initializable {
 			stage.setScene(scene);
 			stage.show();
 		}
-		
+
+	}
+	public void switchToProfile(ActionEvent event) throws IOException{
+		if(LocalUser.seeing_userid.equals(LocalUser.id)){
+			root = FXMLLoader.load(getClass().getResource("myinfo-likes.fxml"));
+			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		} else {
+			root = FXMLLoader.load(getClass().getResource("UserInfo-likes.fxml"));
+			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		}
+
 	}
 	
 	public void switchToFollowers(ActionEvent event) throws IOException{

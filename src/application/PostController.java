@@ -72,6 +72,8 @@ public class PostController {
     public void switchToPostDetail(MouseEvent event) throws IOException {
 
         LocalUser.seeing_userid = user_id.getText();
+        LocalUser.seeing_postid = this.post_id;
+
 
         SceneData.PrevScene = ((Node) event.getSource()).getScene();
 

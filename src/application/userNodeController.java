@@ -37,6 +37,6 @@ public class userNodeController {
     
     public void setUserNode(String name, String user_id) {
         this.name.setText(name);
-        this.user_id.setText("@" + user_id);
+        this.user_id.setText(user_id);
     }
 }

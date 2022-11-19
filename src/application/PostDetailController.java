@@ -12,7 +12,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -34,6 +33,8 @@ public class PostDetailController implements Initializable{
     public ImageView iLike;
     @FXML
     public ImageView iRetweet;
+
+	private String post_id;
     
     
     @FXML
@@ -79,18 +80,7 @@ public class PostDetailController implements Initializable{
 		stage.show();
 		
 	}
-    
-    
-    public void setPost(String name, String user_id, String content, Image img, Integer num_of_likes, Integer num_of_comments) {
-        this.name.setText(name);
-        this.user_id.setText("@" + user_id);
-        this.content.setText(content);
-        this.img.setImage(img);
-        this.num_of_likes.setText(String.valueOf(num_of_likes));
-        this.num_of_comments.setText(String.valueOf(num_of_comments));
-    }
-    
-    
+
     
  // switch to main page
  	public void switchToMain(ActionEvent event) throws IOException{
@@ -120,8 +110,18 @@ public class PostDetailController implements Initializable{
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-    	// set post
+		Model model = new Model();
 
+		Post post = model.getPostDetail(LocalUser.seeing_postid, LocalUser.seeing_userid);
+
+		this.name.setText(post.getNickname());
+		this.user_id.setText(post.getUser_id());
+		this.content.setText(post.getContent());
+		this.img.setImage(post.getImg());
+		this.num_of_likes.setText(String.valueOf(post.getLike_num()));
+		this.num_of_comments.setText(String.valueOf(post.getCommnet_num()));
+
+		this.post_id = post.getPostid();
     }
 
 }
