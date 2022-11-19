@@ -88,7 +88,7 @@ public class UserInfoTweetsController {
 	
 	public void switchToTweetsNReplies(ActionEvent event) throws IOException{
 		
-		root = FXMLLoader.load(getClass().getResource("OtherInfo-tnr.fxml"));
+		root = FXMLLoader.load(getClass().getResource("UserInfo-tnr.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -98,7 +98,7 @@ public class UserInfoTweetsController {
 	
 	public void switchToLikes(ActionEvent event) throws IOException{
 		
-		root = FXMLLoader.load(getClass().getResource("OtherInfo-likes.fxml"));
+		root = FXMLLoader.load(getClass().getResource("UserInfo-likes.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);

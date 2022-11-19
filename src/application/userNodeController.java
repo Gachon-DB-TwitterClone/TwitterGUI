@@ -26,7 +26,7 @@ public class userNodeController {
 		
     	SceneData.PrevScene = ((Node)event.getSource()).getScene();
     	
-		root = FXMLLoader.load(getClass().getResource("OtherInfo-tweets.fxml"));
+		root = FXMLLoader.load(getClass().getResource("UserInfo-tweets.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);

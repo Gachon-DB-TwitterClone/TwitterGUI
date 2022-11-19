@@ -72,7 +72,7 @@ public class PostDetailController implements Initializable{
     
     public void switchToUserInfo(ActionEvent event) throws IOException{
 		
-		root = FXMLLoader.load(getClass().getResource("OtherInfo-tweets.fxml"));
+		root = FXMLLoader.load(getClass().getResource("UserInfo-tweets.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);

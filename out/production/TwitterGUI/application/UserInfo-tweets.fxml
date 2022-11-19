@@ -15,13 +15,13 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OtherInfoLikesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.UserInfoTweetsController">
    <top>
       <VBox prefHeight="280.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane prefHeight="271.0" prefWidth="500.0" style="-fx-background-color: #00acee;">
                <children>
-                  <Button layoutX="418.0" layoutY="19.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                  <Button layoutX="418.0" layoutY="19.0" mnemonicParsing="false" onAction="#switchToSearch" style="-fx-background-color: transparent;">
                      <graphic>
                         <StackPane prefHeight="13.0" prefWidth="55.0">
                            <children>
@@ -38,7 +38,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="14.0" layoutY="19.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                  <Button layoutX="14.0" layoutY="19.0" mnemonicParsing="false" onAction="#switchPrevScene" style="-fx-background-color: transparent;">
                      <graphic>
                         <StackPane prefHeight="13.0" prefWidth="25.0">
                            <children>
@@ -70,23 +70,6 @@
                         <Font name="Calibri Bold" size="26.0" />
                      </font>
                   </Label>
-                  <HBox layoutX="47.0" layoutY="54.0">
-                     <children>
-                        <Label text="\@" textFill="#757575">
-                           <font>
-                              <Font name="Calibri" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="u_id" text="user_id" textFill="#757575">
-                           <HBox.margin>
-                              <Insets left="3.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="Calibri" size="16.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
                   <HBox layoutX="48.0" layoutY="82.0" prefHeight="41.0" prefWidth="364.0">
                      <children>
                         <Label text="100">
@@ -125,7 +108,7 @@
                   </HBox>
                   <HBox layoutY="117.0" prefHeight="47.0" prefWidth="500.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-background-color: transparent;" text="Tweets" textFill="#868585">
+                        <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="83.0" style="-fx-background-color: transparent; -fx-border-color: #00acee; -fx-border-width: 0px 0px 3px 0px;" text="Tweets">
                            <HBox.margin>
                               <Insets left="30.0" />
                            </HBox.margin>
@@ -136,7 +119,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="158.0" style="-fx-background-color: transparent;" text="Tweets &amp; replies" textFill="#868585">
+                        <Button mnemonicParsing="false" onAction="#switchToTweetsNReplies" prefHeight="47.0" prefWidth="158.0" style="-fx-background-color: transparent;" text="Tweets &amp; replies" textFill="#868585">
                            <HBox.margin>
                               <Insets left="70.0" />
                            </HBox.margin>
@@ -147,7 +130,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="65.0" style="-fx-background-color: transparent; -fx-border-color: #00acee; -fx-border-width: 0px 0px 3px 0px;" text="Likes">
+                        <Button mnemonicParsing="false" onAction="#switchToLikes" prefHeight="51.0" prefWidth="65.0" style="-fx-background-color: transparent;" text="Likes" textFill="#868585">
                            <HBox.margin>
                               <Insets left="70.0" />
                            </HBox.margin>
@@ -160,7 +143,7 @@
                         </Button>
                      </children>
                   </HBox>
-                  <Button layoutX="360.0" layoutY="14.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="112.0" style="-fx-background-color: black; -fx-background-radius: 30px;" text="Follow" textFill="WHITE">
+                  <Button layoutX="360.0" layoutY="14.0" mnemonicParsing="false" onAction="#follow" prefHeight="29.0" prefWidth="112.0" style="-fx-background-color: black; -fx-background-radius: 30px;" text="Follow" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
@@ -168,6 +151,23 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <HBox layoutX="43.0" layoutY="55.0">
+                     <children>
+                        <Label text="\@" textFill="#757575">
+                           <font>
+                              <Font name="Calibri" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="u_id" text="user_id" textFill="#757575">
+                           <HBox.margin>
+                              <Insets left="3.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Calibri" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
          </children>
@@ -176,7 +176,7 @@
    <bottom>
       <AnchorPane prefHeight="73.0" prefWidth="500.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="57.0" layoutY="19.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="46.0" style="-fx-background-color: transparent;">
+            <Button layoutX="57.0" layoutY="19.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="35.0" prefWidth="46.0" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -188,7 +188,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="223.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+            <Button layoutX="223.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToSearch" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -225,14 +225,14 @@
             </Button>
             <ScrollPane hbarPolicy="NEVER" prefHeight="397.0" prefWidth="500.0" vbarPolicy="NEVER">
                <content>
-                  <AnchorPane prefHeight="396.0" prefWidth="500.0" style="-fx-background-color: white;">
+                  <AnchorPane prefHeight="397.0" prefWidth="500.0" style="-fx-background-color: white;">
                      <children>
                         <VBox fx:id="PostsContainer" prefWidth="500.0" />
                      </children>
                   </AnchorPane>
                </content>
             </ScrollPane>
-            <Button layoutX="418.0" layoutY="321.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+            <Button layoutX="418.0" layoutY="321.0" mnemonicParsing="false" onAction="#switchToWritepost" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="56.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                      <image>

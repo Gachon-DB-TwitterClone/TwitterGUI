@@ -14,7 +14,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0" style="-fx-border-color: #C0C0C0; -fx-border-width: 0px 0px 1px 0px; -fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PostController">
    <children>
-      <HBox onKeyPressed="#switchToPostDetail" onMouseClicked="#switchToPostDetail" prefHeight="73.0" prefWidth="600.0">
+      <HBox prefHeight="73.0" prefWidth="600.0">
          <children>
             <ImageView fitHeight="62.0" fitWidth="57.0" onMouseClicked="#switchToUserInfo" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -84,7 +84,7 @@
                   <Insets left="10.0" top="5.0" />
                </HBox.margin>
             </ImageView>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="46.0" style="-fx-background-color: transparent;">
+            <Button mnemonicParsing="false" onAction="#switchToPostDetail" prefHeight="35.0" prefWidth="46.0" style="-fx-background-color: transparent;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

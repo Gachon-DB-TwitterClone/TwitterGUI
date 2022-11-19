@@ -56,7 +56,7 @@ public class UserInfoLikesController implements Initializable {
 	public void switchPrevScene(ActionEvent event) throws IOException{
 		
     	if (SceneData.PrevScene == null) {
-			root = FXMLLoader.load(getClass().getResource("����ȭ��.fxml"));
+			root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
@@ -96,7 +96,7 @@ public class UserInfoLikesController implements Initializable {
 	
 	public void switchToTweets(ActionEvent event) throws IOException{
 		
-		root = FXMLLoader.load(getClass().getResource("Ÿ������-tweets.fxml"));
+		root = FXMLLoader.load(getClass().getResource("UserInfo-tweets.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -106,7 +106,7 @@ public class UserInfoLikesController implements Initializable {
 	
 	public void switchToTweetsNReplies(ActionEvent event) throws IOException{
 		
-		root = FXMLLoader.load(getClass().getResource("Ÿ������-tnr.fxml"));
+		root = FXMLLoader.load(getClass().getResource("UserInfo-tnr.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -119,7 +119,7 @@ public class UserInfoLikesController implements Initializable {
 		
 		SceneData.PrevScene = ((Node)event.getSource()).getScene();
 		
-		root = FXMLLoader.load(getClass().getResource("�۾���.fxml"));
+		root = FXMLLoader.load(getClass().getResource("WritePost.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
@@ -132,7 +132,7 @@ public class UserInfoLikesController implements Initializable {
 		
 		SceneData.PrevScene = ((Node)event.getSource()).getScene();
 
-		root = FXMLLoader.load(getClass().getResource("����ȭ��.fxml"));
+		root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
 
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
