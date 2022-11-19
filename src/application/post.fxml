@@ -27,7 +27,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <VBox>
+            <VBox onMouseClicked="#switchToPostDetail">
                <HBox.margin>
                   <Insets bottom="5.0" left="15.0" />
                </HBox.margin>
