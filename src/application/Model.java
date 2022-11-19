@@ -225,11 +225,11 @@ public class Model {
 
 
     public List<Post> getMainUserPost() {
-        return getUserPost(LocalUser.id);
+        return getUserPosts(LocalUser.id);
     }
 
 
-    public List<Post> getUserPost(String userid) {
+    public List<Post> getUserPosts(String userid) {
         List<Post> ls = new ArrayList<Post>();
 
 
@@ -284,7 +284,8 @@ public class Model {
                 a_post.setDate(p_date);
 				a_post.setLike_num(p_num_of_likes);
 				a_post.setCommnet_num(p_num_of_comments);
-				a_post.setRetweet_num(p_num_of_retweets);
+                a_post.setRetweet_num(p_num_of_retweets);
+                a_post.setPostid(p_id);
                 ls.add(a_post);
 
             }
@@ -295,7 +296,7 @@ public class Model {
         return ls;
     }
 
-    public List<Post> getRandomPost() {
+    public List<Post> getRandomPosts() {
         List<Post> ls = new ArrayList<Post>();
 
 
@@ -358,6 +359,7 @@ public class Model {
                 a_post.setLike_num(p_num_of_likes);
                 a_post.setCommnet_num(p_num_of_comments);
                 a_post.setRetweet_num(p_num_of_retweets);
+                a_post.setPostid(p_id);
                 ls.add(a_post);
 
             }
@@ -378,7 +380,7 @@ public class Model {
 
     }
 
-    public List<Post> getUserLikedPost(String userid) {
+    public List<Post> getUserLikedPosts(String userid) {
         List<Post> ls = new ArrayList<Post>();
 
         try {
@@ -420,6 +422,7 @@ public class Model {
                 a_post.setLike_num(p_num_of_likes);
                 a_post.setCommnet_num(p_num_of_comments);
                 a_post.setRetweet_num(p_num_of_retweets);
+                a_post.setPostid(p_id);
                 ls.add(a_post);
 
             }
@@ -429,6 +432,31 @@ public class Model {
         }
 
         return ls;
+
+    }
+
+    public Post getPostDetail(String postid, String userid) {
+        Post post = new Post();
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost/twitter";
+            String sql_id = "root", pw = "12341234";
+            Connection con = DriverManager.getConnection(url, sql_id, pw);
+            String query1 = "SELECT * FROM twitter.post WHERE post_id = ? AND user_id = ?";
+            PreparedStatement ps1 = con.prepareStatement(query1);
+            ps1.setString(1, postid);
+            ps1.setString(2, userid);
+            ResultSet rs = ps1.executeQuery();
+            while (rs.next()) {
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return post;
 
     }
 

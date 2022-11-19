@@ -15,6 +15,16 @@ public class Post {
     private int retweet_num;
     private Date date;
 
+    private String postid;
+
+    public String getPostid() {
+        return postid;
+    }
+
+    public void setPostid(String postid) {
+        this.postid = postid;
+    }
+
     public Date getDate() {
         return date;
     }

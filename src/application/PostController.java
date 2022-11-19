@@ -52,9 +52,12 @@ public class PostController {
     private Scene scene;
     private Parent root;
 
+    private String post_id;
+
 
     public void switchToUserInfo(MouseEvent event) throws IOException {
         LocalUser.seeing_userid = user_id.getText();
+        LocalUser.seeing_postid = this.post_id;
 
         SceneData.PrevScene = ((Node) event.getSource()).getScene();
 
@@ -66,7 +69,7 @@ public class PostController {
 
     }
 
-    public void switchToPostDetail(ActionEvent event) throws IOException {
+    public void switchToPostDetail(MouseEvent event) throws IOException {
 
         LocalUser.seeing_userid = user_id.getText();
 
@@ -79,7 +82,7 @@ public class PostController {
         stage.show();
     }
 
-    public void setPost(String name, String user_id, String content, Image img, Integer num_of_likes, Integer num_of_comments, Integer num_of_retweets) {
+    public void setPost(String name, String user_id, String content, Image img, Integer num_of_likes, Integer num_of_comments, Integer num_of_retweets, String post_id) {
         this.name.setText(name);
         this.user_id.setText(user_id);
         this.content.setText(content);
@@ -92,5 +95,6 @@ public class PostController {
         this.num_of_likes.setText(String.valueOf(num_of_likes));
         this.num_of_comments.setText(String.valueOf(num_of_comments));
         this.num_of_retweets.setText(String.valueOf(num_of_retweets));
+        this.post_id = post_id;
     }
 }

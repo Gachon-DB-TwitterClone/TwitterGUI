@@ -176,7 +176,7 @@ public class MyPageTweetsController implements Initializable {
 
 				VBox newBox = fxmlLoader.load();
 				PostController postController = fxmlLoader.getController();
-				postController.setPost(post.getNickname(), post.getUser_id(), post.getCaption(), post.getImg(), post.getLike_num(), post.getCommnet_num(), post.getRetweet_num());
+				postController.setPost(post.getNickname(), post.getUser_id(), post.getCaption(), post.getImg(), post.getLike_num(), post.getCommnet_num(), post.getRetweet_num(),  post.getPostid());
 
 				PostsContainer.getChildren().add(newBox);
 
