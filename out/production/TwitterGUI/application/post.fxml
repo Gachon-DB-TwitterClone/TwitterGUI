@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0" style="-fx-border-color: #C0C0C0; -fx-border-width: 0px 0px 1px 0px; -fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PostController">
+   <children>
+      <HBox onKeyPressed="#switchToPostDetail" onMouseClicked="#switchToPostDetail" prefHeight="73.0" prefWidth="600.0">
+         <children>
+            <ImageView fitHeight="62.0" fitWidth="57.0" onMouseClicked="#switchToUserInfo" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@user.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="20.0" top="10.0" />
+               </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <VBox>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="15.0" />
+               </HBox.margin>
+               <children>
+                  <HBox prefHeight="39.0" prefWidth="353.0">
+                     <children>
+                        <Label fx:id="name" text="Nograss">
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Calibri Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="user_id" text="\@jungwon" textFill="#4d4b4b">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Calibri" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Label fx:id="content" maxWidth="1.7976931348623157E308" text="caption">
+                     <font>
+                        <Font name="Calibri" size="19.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                     <children>
+                        <AnchorPane prefHeight="150.0" prefWidth="103.0" />
+                        <ImageView fx:id="img" fitHeight="165.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@already_like.png" />
+                           </image>
+                        </ImageView>
+                        <AnchorPane prefHeight="150.0" prefWidth="100.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <ImageView fitHeight="34.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@more.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="10.0" top="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="46.0" style="-fx-background-color: transparent;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </HBox>
+      <AnchorPane prefHeight="50.0" prefWidth="500.0">
+         <children>
+            <Button layoutX="46.0" layoutY="6.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="46.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <StackPane>
+                     <children>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" opacity="0.45" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@like.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@already_like.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="204.0" layoutY="6.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="46.0" style="-fx-background-color: transparent;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="35.0" opacity="0.45" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@comment.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="358.0" layoutY="5.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="46.0" style="-fx-background-color: transparent;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <StackPane>
+                     <children>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" opacity="0.45" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@retweet.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@complete_retweet.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </graphic>
+            </Button>
+            <Label fx:id="num_of_likes" layoutX="97.0" layoutY="16.0" text="0">
+               <font>
+                  <Font name="Calibri" size="19.0" />
+               </font></Label>
+            <Label fx:id="num_of_comments" layoutX="255.0" layoutY="16.0" text="0">
+               <font>
+                  <Font name="Calibri" size="19.0" />
+               </font></Label>
+            <Label layoutX="409.0" layoutY="16.0" text="0">
+               <font>
+                  <Font name="Calibri" size="19.0" />
+               </font></Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="27.0" prefWidth="500.0" style="-fx-background-color: white;" />
+   </children>
+</VBox>

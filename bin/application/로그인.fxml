@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="500.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
+   <children>
+      <Text layoutX="59.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To get started, please proceed with login or create account. " textAlignment="CENTER" wrappingWidth="395.59716796875">
+         <font>
+            <Font name="Calibri Bold" size="30.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="55.0" fitWidth="52.0" layoutX="224.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@twitter.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="uid" layoutX="58.0" layoutY="369.0" prefHeight="52.0" prefWidth="396.0" promptText="User id" style="-fx-border-color: #C0C0C0; -fx-border-width: 2px 2px 2px 2px; -fx-border-radius: 40px; -fx-background-color: transparent; -fx-text-fill: #00ACEE;">
+         <font>
+            <Font name="Calibri" size="20.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="upwd" layoutX="58.0" layoutY="446.0" prefHeight="52.0" prefWidth="396.0" promptText="Password" style="-fx-border-color: #C0C0C0; -fx-border-width: 2px; -fx-border-radius: 40px; -fx-background-color: trasnparent; -fx-text-fill: #00ACEE;">
+         <font>
+            <Font name="Calibri" size="20.0" />
+         </font>
+      </PasswordField>
+      <Line endX="78.0" layoutX="151.0" layoutY="594.0" startX="-100.0" stroke="SILVER" />
+      <Line endX="64.0" layoutX="385.0" layoutY="593.0" startX="-115.0" stroke="SILVER" />
+      <Text fill="#242424" layoutX="241.0" layoutY="599.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or">
+         <font>
+            <Font name="Calibri" size="19.0" />
+         </font>
+      </Text>
+      <Button layoutX="63.0" layoutY="520.0" mnemonicParsing="false" onAction="#login" prefHeight="43.0" prefWidth="387.0" style="-fx-background-color: #242424; -fx-background-radius: 30px;" text="Log in" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Text fill="#5b5858" layoutX="74.0" layoutY="639.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Have no an account yet?">
+         <font>
+            <Font name="Calibri" size="19.0" />
+         </font>
+      </Text>
+      <Button layoutX="264.0" layoutY="618.0" mnemonicParsing="false" onAction="#switchToSignup" style="-fx-background-color: transparent;" text="Create account" textFill="#00acee">
+         <font>
+            <Font name="Calibri Bold" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="386.0" layoutY="693.0" mnemonicParsing="false" onAction="#switchToNonLoginMain" style="-fx-background-color: #242424; -fx-background-radius: 30px;" text="Skip" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
