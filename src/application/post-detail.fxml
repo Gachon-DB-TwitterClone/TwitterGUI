@@ -56,12 +56,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField layoutX="27.0" layoutY="14.0" prefHeight="42.0" prefWidth="389.0" promptText="Tweet your reply" style="-fx-background-color: #DCDCDC; -fx-background-radius: 30px;">
+            <TextField fx:id="commentField" layoutX="27.0" layoutY="14.0" prefHeight="42.0" prefWidth="389.0" promptText="Tweet your reply" style="-fx-background-color: #DCDCDC; -fx-background-radius: 30px;">
                <font>
                   <Font name="Calibri" size="19.0" />
                </font>
             </TextField>
-            <Button layoutX="422.0" layoutY="17.0" mnemonicParsing="false" style="-fx-background-color: #00acee; -fx-background-radius: 30px;" text="Reply" textFill="WHITE">
+            <Button layoutX="422.0" layoutY="17.0" mnemonicParsing="false" onAction="#WriteComment" style="-fx-background-color: #00acee; -fx-background-radius: 30px;" text="Reply" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="17.0" />
                </font>
@@ -79,7 +79,7 @@
                <content>
                   <AnchorPane prefHeight="635.0" prefWidth="500.0" style="-fx-background-color: white;">
                      <children>
-                        <VBox prefWidth="500.0">
+                        <VBox fx:id="CommentsContainer" prefWidth="500.0">
                            <children>
                               <AnchorPane prefHeight="60.0" prefWidth="500.0" style="-fx-background-color: white;">
                                  <children>

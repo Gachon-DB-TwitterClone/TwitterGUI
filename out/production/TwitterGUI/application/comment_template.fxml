@@ -8,11 +8,12 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0" style="-fx-border-color: #C0C0C0; -fx-border-width: 0px 0px 1px 0px; -fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0" style="-fx-border-color: #C0C0C0; -fx-border-width: 0px 0px 1px 0px; -fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CommentController">
    <children>
       <HBox prefHeight="73.0" prefWidth="600.0">
          <children>
@@ -31,7 +32,7 @@
                <children>
                   <HBox prefHeight="39.0" prefWidth="353.0">
                      <children>
-                        <Label text="Nograss">
+                        <Label fx:id="name" text="\@jungwon">
                            <HBox.margin>
                               <Insets top="10.0" />
                            </HBox.margin>
@@ -39,7 +40,7 @@
                               <Font name="Calibri Bold" size="19.0" />
                            </font>
                         </Label>
-                        <Label text="\@jungwon" textFill="#4d4b4b">
+                        <Label fx:id="user_id" text="\@jungwon" textFill="#4d4b4b">
                            <HBox.margin>
                               <Insets left="10.0" top="10.0" />
                            </HBox.margin>
@@ -59,7 +60,7 @@
                               <Insets top="3.0" />
                            </HBox.margin>
                         </Text>
-                        <Label text="\@daeon" textFill="#00acee">
+                        <Label fx:id="target_user_id" text="\@daeon" textFill="#00acee">
                            <HBox.margin>
                               <Insets left="4.0" />
                            </HBox.margin>
@@ -72,7 +73,7 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </HBox>
-                  <Label prefHeight="45.0" prefWidth="353.0" text="Hi! it's my first post!">
+                  <Label fx:id="content" prefHeight="45.0" prefWidth="353.0" text="Hi! it's my first post!">
                      <font>
                         <Font name="Calibri" size="19.0" />
                      </font>
@@ -80,7 +81,7 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <ImageView fitHeight="150.0" fitWidth="296.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="img" fitHeight="150.0" fitWidth="296.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@already_like.png" />
                      </image>
@@ -103,16 +104,25 @@
       <AnchorPane prefHeight="50.0" prefWidth="500.0">
          <children>
             <Button layoutX="46.0" layoutY="6.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="46.0" style="-fx-background-color: transparent;">
-               <graphic>
-                  <ImageView fitHeight="31.0" fitWidth="35.0" opacity="0.45" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@like.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <graphic>
+                  <StackPane>
+                     <children>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" opacity="0.45" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@like.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="iLike" fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@already_like.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+               </graphic>
             </Button>
             <Button layoutX="204.0" layoutY="6.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="46.0" style="-fx-background-color: transparent;">
                <cursor>
@@ -131,16 +141,25 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                <graphic>
-                  <ImageView fitHeight="31.0" fitWidth="35.0" opacity="0.45" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@retweet.png" />
-                     </image>
-                  </ImageView>
+                  <StackPane>
+                     <children>
+                        <ImageView fitHeight="31.0" fitWidth="35.0" opacity="0.45" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@retweet.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="iRetweet" fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@complete_retweet.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
                </graphic>
             </Button>
-            <Label layoutX="97.0" layoutY="16.0" text="35" />
-            <Label layoutX="255.0" layoutY="16.0" text="127" />
-            <Label layoutX="409.0" layoutY="16.0" text="33" />
+            <Label fx:id="num_of_likes" layoutX="97.0" layoutY="16.0" text="35" />
+            <Label fx:id="num_of_comments" layoutX="255.0" layoutY="16.0" text="127" />
+            <Label fx:id="num_of_retweets" layoutX="409.0" layoutY="16.0" text="33" />
          </children>
       </AnchorPane>
    </children>

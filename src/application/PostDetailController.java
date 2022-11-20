@@ -2,6 +2,8 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -12,8 +14,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
 
 public class PostDetailController implements Initializable{
 
@@ -106,9 +111,10 @@ public class PostDetailController implements Initializable{
  		stage.show();
  		
  	}
-    
-    
-    @Override
+
+	public VBox CommentsContainer;
+
+	@Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 		Model model = new Model();
 
@@ -122,8 +128,50 @@ public class PostDetailController implements Initializable{
 		this.num_of_comments.setText(String.valueOf(post.getCommnet_num()));
 
 		this.post_id = post.getPostid();
-    }
 
+		/// comments
+
+
+		// set Tweets
+		// fill Tweets
+		List<Comment> comments = new ArrayList<>(getComments());
+
+		for(Comment comment: comments){
+
+			try {
+				FXMLLoader fxmlLoader = new FXMLLoader();
+				fxmlLoader.setLocation(getClass().getResource("comment_template.fxml"));
+
+				VBox newBox = fxmlLoader.load();
+				CommentController commentsContainer = fxmlLoader.getController();
+				commentsContainer.setComment(comment.getUsername(), comment.getUser_id(), comment.getContent(), comment.getImg(), comment.getLike_num(), comment.getCommnet_num(), comment.getRetweet_num(),  comment.getCommentid());
+
+				CommentsContainer.getChildren().add(newBox);
+
+
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	public List<Comment> getComments(){
+		List<Comment> comments = new ArrayList<Comment>();
+
+		Model model = new Model();
+		comments = model.getComments(LocalUser.seeing_postid);
+
+		return comments;
+	}
+
+	public TextField commentField;
+
+	public void WriteComment(ActionEvent event) {
+
+		Model model = new Model();
+		model.writeComment(LocalUser.id, commentField.getText(), LocalUser.seeing_postid);
+	}
 }
     
     
