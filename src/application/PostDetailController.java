@@ -43,9 +43,18 @@ public class PostDetailController implements Initializable{
     
     
     @FXML
-    public void likePost(ActionEvent evnet) {
-    	iLike.setVisible(true);
-    }
+	public void likePost(ActionEvent evnet) {
+		Model model = new Model();
+		Boolean IsLiked = model.like_post(LocalUser.id, user_id.getText(), this.post_id);
+		iLike.setVisible(IsLiked);
+		if(IsLiked) {
+			int new_num_likes = Integer.parseInt(num_of_likes.getText()) + 1;
+			num_of_likes.setText(String.valueOf(new_num_likes));
+		} else {
+			int new_num_likes = Integer.parseInt(num_of_likes.getText()) - 1;
+			num_of_likes.setText(String.valueOf(new_num_likes));
+		}
+	}
     
     public void retweetPost(ActionEvent evnet) {
     	iRetweet.setVisible(true);

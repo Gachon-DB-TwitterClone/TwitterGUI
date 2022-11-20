@@ -649,6 +649,11 @@ public class Model {
                     username = rs2.getString("name");
                 }
 
+                User newUser = new User();
+                newUser.setName(username);
+                newUser.setUser_id(user_id);
+
+                ls.add(newUser);
 
             }
 
@@ -909,6 +914,87 @@ public class Model {
         }
 
         return false;
+    }
+
+
+    public Boolean checkFollowed(String local_id, String target_id) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost/twitter";
+            String sql_id = "root", pw = "12341234";
+            Connection con = DriverManager.getConnection(url, sql_id, pw);
+            String query1 = "SELECT target_user_id FROM follows WHERE user_id = ? AND target_user_id = ?";
+            PreparedStatement ps1 = con.prepareStatement(query1);
+            ps1.setString(1, local_id);
+            ps1.setString(2, target_id);
+            ResultSet rs1 = ps1.executeQuery();
+
+            if(rs1.next()){ // 팔로우 돼있음
+                return true;
+            } else {
+                return false;
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+
+    public Boolean follow_user(String user_id, String target_user_id) {
+
+        Boolean IsSuccess = false;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost/twitter";
+            String sql_id = "root", pw = "12341234";
+            Connection con = DriverManager.getConnection(url, sql_id, pw);
+            if (!checkFollowed(user_id, target_user_id)) {
+//                String query2 = "select count(like_id) from likes where user_id = ?;";
+//                PreparedStatement ps2 = con.prepareStatement(query2);
+//                ps2.setString(1, user_id);
+//                ResultSet rs2 = ps2.executeQuery();
+//                if(rs2.next()){
+//                    String last_like_id_num = String.valueOf(rs2.getInt(1));
+//                    int new_num_likes = rs2.getInt(1) + 1;
+//                    String like_id = "l" + String.valueOf(new_num_likes);
+
+                String query3 = "insert into follows (user_id, target_user_id, following_date) \n" +
+                        "values (?, ?, NOW());";
+                PreparedStatement ps3 = con.prepareStatement(query3);
+                ps3.setString(1, user_id);
+                ps3.setString(2, target_user_id);
+                int rs3 = ps3.executeUpdate();
+
+                if (rs3 > 0) {
+                    IsSuccess = true;
+                }
+
+//                }
+
+            } else { // 팔로우 돼있는 경우
+                String query4 = "delete from follows where user_id = ? and target_user_id = ?";
+                PreparedStatement ps4 = con.prepareStatement(query4);
+                ps4.setString(1, user_id);
+                ps4.setString(2, target_user_id);
+                int rs4 = ps4.executeUpdate();
+
+                if (rs4 > 0) {
+                    IsSuccess = false;
+                }
+
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return IsSuccess;
     }
 
 }

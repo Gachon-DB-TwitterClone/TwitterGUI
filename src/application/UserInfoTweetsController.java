@@ -22,26 +22,6 @@ public class UserInfoTweetsController implements Initializable {
 
     public Button btnFollow;
 
-    public void follow(ActionEvent event) {
-        String fol = btnFollow.getText();
-
-        //if user clicked follow btn, change to following
-        if (fol.equalsIgnoreCase("follow")) {
-
-            btnFollow.setText("Following");
-            btnFollow.setStyle("-fx-background-color: white; -fx-background-radius: 30px; -fx-border-color: #C0C0C0; -fx-border-radius: 30px; -fx-text-fill: black");
-
-        }
-        // else if user clicked following btn to unfollow, change to follow
-
-        if (fol.equalsIgnoreCase("following")) {
-
-            btnFollow.setText("Follow");
-            btnFollow.setStyle("-fx-background-color: black; -fx-background-radius: 30px; -fx-border-color: black; -fx-border-radius: 30px; -fx-text-fill: white");
-        }
-
-
-    }
 
 
     //
@@ -169,6 +149,7 @@ public class UserInfoTweetsController implements Initializable {
         following.setText(String.valueOf((model.getFollowingById(LocalUser.seeing_userid).size())));
         follower.setText(String.valueOf((model.getFollowerById(LocalUser.seeing_userid).size())));
 
+
         // set Tweets
         // fill Tweets
 
@@ -196,6 +177,28 @@ public class UserInfoTweetsController implements Initializable {
         }
 
 
+//        public Boolean isLiked(String user_id, String target_user_id, String post_id){
+        changeButtonState(model.checkFollowed(LocalUser.id, LocalUser.seeing_userid));
+
+    }
+
+    public void changeButtonState(Boolean IsFollow){
+        if(IsFollow){
+            btnFollow.setText("Following");
+            btnFollow.setStyle("-fx-background-color: white; -fx-background-radius: 30px; -fx-border-color: #C0C0C0; -fx-border-radius: 30px; -fx-text-fill: black");
+        } else {
+            btnFollow.setText("Follow");
+            btnFollow.setStyle("-fx-background-color: black; -fx-background-radius: 30px; -fx-border-color: black; -fx-border-radius: 30px; -fx-text-fill: white");
+        }
+
+    }
+
+
+    public void follow(ActionEvent event) {
+        Model model = new Model();
+        Boolean IsFollowed = model.follow_user(LocalUser.id, LocalUser.seeing_userid);
+
+        changeButtonState(IsFollowed);
     }
 
     public List<Post> getPosts() {

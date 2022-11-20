@@ -22,27 +22,6 @@ public class UserInfoTweetsNRepliesController implements Initializable {
 
     public Button btnFollow;
 
-    public void follow(ActionEvent event) {
-        String fol = btnFollow.getText();
-
-        //if user clicked follow btn, change to following
-        if (fol.equalsIgnoreCase("follow")) {
-
-            btnFollow.setText("Following");
-            btnFollow.setStyle("-fx-background-color: white; -fx-background-radius: 30px; -fx-border-color: #C0C0C0; -fx-border-radius: 30px; -fx-text-fill: black");
-
-        }
-        // else if user clicked following btn to unfollow, change to follow
-
-        if (fol.equalsIgnoreCase("following")) {
-
-            btnFollow.setText("Follow");
-            btnFollow.setStyle("-fx-background-color: black; -fx-background-radius: 30px; -fx-border-color: black; -fx-border-radius: 30px; -fx-text-fill: white");
-        }
-
-
-    }
-
 
     //
     // Scene Controller
@@ -61,7 +40,7 @@ public class UserInfoTweetsNRepliesController implements Initializable {
 
     public void switchToFollowing(ActionEvent event) throws IOException {
 
-        SceneData.PrevScene.add(((Node)event.getSource()).getScene());
+        SceneData.PrevScene.add(((Node) event.getSource()).getScene());
 
         root = FXMLLoader.load(getClass().getResource("following.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -72,7 +51,7 @@ public class UserInfoTweetsNRepliesController implements Initializable {
 
     public void switchToFollowers(ActionEvent event) throws IOException {
 
-        SceneData.PrevScene.add(((Node)event.getSource()).getScene());
+        SceneData.PrevScene.add(((Node) event.getSource()).getScene());
 
         root = FXMLLoader.load(getClass().getResource("followers.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -104,7 +83,7 @@ public class UserInfoTweetsNRepliesController implements Initializable {
     // switch to writh_post page
     public void switchToWritepost(ActionEvent event) throws IOException {
 
-        SceneData.PrevScene.add(((Node)event.getSource()).getScene());
+        SceneData.PrevScene.add(((Node) event.getSource()).getScene());
 
         root = FXMLLoader.load(getClass().getResource("WritePost.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -117,7 +96,7 @@ public class UserInfoTweetsNRepliesController implements Initializable {
     // switch to main page
     public void switchToMain(ActionEvent event) throws IOException {
 
-        SceneData.PrevScene.add(((Node)event.getSource()).getScene());
+        SceneData.PrevScene.add(((Node) event.getSource()).getScene());
 
         root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
 
@@ -131,7 +110,7 @@ public class UserInfoTweetsNRepliesController implements Initializable {
     // switch to search page
     public void switchToSearch(ActionEvent event) throws IOException {
 
-        SceneData.PrevScene.add(((Node)event.getSource()).getScene());
+        SceneData.PrevScene.add(((Node) event.getSource()).getScene());
 
         root = FXMLLoader.load(getClass().getResource("search.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -163,15 +142,11 @@ public class UserInfoTweetsNRepliesController implements Initializable {
         // fill Tweets & replies
 
 
-
-
-
-
         // set Tweets
         // fill Tweets
         List<Post> posts = new ArrayList<>(getPosts());
 
-        for(Post post: posts){
+        for (Post post : posts) {
 
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -179,25 +154,48 @@ public class UserInfoTweetsNRepliesController implements Initializable {
 
                 VBox newBox = fxmlLoader.load();
                 PostController postController = fxmlLoader.getController();
-                postController.setPost(post.getUsername(), post.getUser_id(), post.getContent(), post.getImg(), post.getLike_num(), post.getCommnet_num(), post.getRetweet_num(),  post.getPostid());
+                postController.setPost(post.getUsername(), post.getUser_id(), post.getContent(), post.getImg(), post.getLike_num(), post.getCommnet_num(), post.getRetweet_num(), post.getPostid());
 
                 PostsContainer.getChildren().add(newBox);
 
 
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
 
+//        public Boolean isLiked(String user_id, String target_user_id, String post_id){
+        changeButtonState(model.checkFollowed(LocalUser.id, LocalUser.seeing_userid));
+
     }
 
-    public List<Post> getPosts(){
+    public void changeButtonState(Boolean IsFollow) {
+        if (IsFollow) {
+            btnFollow.setText("Following");
+            btnFollow.setStyle("-fx-background-color: white; -fx-background-radius: 30px; -fx-border-color: #C0C0C0; -fx-border-radius: 30px; -fx-text-fill: black");
+        } else {
+            btnFollow.setText("Follow");
+            btnFollow.setStyle("-fx-background-color: black; -fx-background-radius: 30px; -fx-border-color: black; -fx-border-radius: 30px; -fx-text-fill: white");
+        }
+
+    }
+
+
+    public void follow(ActionEvent event) {
+        Model model = new Model();
+        Boolean IsFollowed = model.follow_user(LocalUser.id, LocalUser.seeing_userid);
+
+        changeButtonState(IsFollowed);
+    }
+
+
+    public List<Post> getPosts() {
         List<Post> posts = new ArrayList<Post>();
 
         Model model = new Model();
         posts = model.getUserRepiedPosts(LocalUser.seeing_userid);
 
-        return  posts;
+        return posts;
     }
 }
