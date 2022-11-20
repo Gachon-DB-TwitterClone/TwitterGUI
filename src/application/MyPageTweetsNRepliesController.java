@@ -2,6 +2,8 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -12,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MyPageTweetsNRepliesController implements Initializable {
@@ -88,11 +91,13 @@ public class MyPageTweetsNRepliesController implements Initializable {
 		stage.show();
 	}
 
-	
-	
-	
-	
-	
+
+
+
+
+
+	public VBox PostsContainer;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Model model = new Model();
@@ -103,10 +108,43 @@ public class MyPageTweetsNRepliesController implements Initializable {
 		
 		// set Tweets & replies
 		// fill Tweets & replies
-		
-		
-		
-		
-		
+
+
+
+
+
+
+		// set Tweets
+		// fill Tweets
+		List<Post> posts = new ArrayList<>(getPosts());
+
+		for(Post post: posts){
+
+			try {
+				FXMLLoader fxmlLoader = new FXMLLoader();
+				fxmlLoader.setLocation(getClass().getResource("post.fxml"));
+
+				VBox newBox = fxmlLoader.load();
+				PostController postController = fxmlLoader.getController();
+				postController.setPost(post.getUsername(), post.getUser_id(), post.getContent(), post.getImg(), post.getLike_num(), post.getCommnet_num(), post.getRetweet_num(),  post.getPostid());
+
+				PostsContainer.getChildren().add(newBox);
+
+
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+
+
+	}
+
+	public List<Post> getPosts(){
+		List<Post> posts = new ArrayList<Post>();
+
+		Model model = new Model();
+		posts = model.getUserRepiedPosts(LocalUser.id);
+
+		return  posts;
 	}
 }

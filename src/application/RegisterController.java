@@ -30,9 +30,28 @@ public class RegisterController {
 	
 	
 	@FXML
-	private void signUp(ActionEvent event) {
-		errorMessage.setVisible(true);
-		System.out.println(name.getText() + ' ' + u_id.getText() + ' ' + u_pw.getText() + ' ' + nick.getText() + ' ' + email.getText());
+	private void signUp(ActionEvent event) throws IOException{
+
+
+		Model model = new Model();
+
+
+		if(model.signUp(u_id.getText(), u_pw.getText(), name.getText(), nick.getText(), email.getText())){
+			AlertBox.display("Congratulation!", "Register Success!");
+
+
+			root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+
+		} else {
+			errorMessage.setVisible(true);
+		}
+
+
+
 	}
 	
 	

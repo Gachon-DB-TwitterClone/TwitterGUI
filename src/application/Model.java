@@ -14,8 +14,32 @@ import java.util.List;
 public class Model {
 
     // hash map param
-    public void signUp(HashMap<String, String> info) {
+    public Boolean signUp(String user_id, String password, String name, String nickname, String email) {
         // sign up
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost/twitter";
+            String sql_id = "root", pw = "12341234";
+            Connection con = DriverManager.getConnection(url, sql_id, pw);
+            String query1 = "INSERT INTO twitter.user (user_id, password, is_private, name, email, nickname)\n" +
+                    "VALUES (?, ?, 0, ?, ?, ?);";
+            PreparedStatement pstm = con.prepareStatement(query1);
+            pstm.setString(1, user_id);
+            pstm.setString(2, password);
+            pstm.setString(3, name);
+            pstm.setString(4, email);
+            pstm.setString(5, name);
+            int rs = pstm.executeUpdate();
+
+            if (rs > 0) {
+                return true;
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 
@@ -322,6 +346,59 @@ public class Model {
         return ls;
     }
 
+
+    public List<Post> getUserRepiedPosts(String userid) {
+        List<Post> ls = new ArrayList<Post>();
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost/twitter";
+            String sql_id = "root", pw = "12341234";
+            Connection con = DriverManager.getConnection(url, sql_id, pw);
+            String query1 = "SELECT * FROM twitter.post WHERE (post_id IN (SELECT post_id FROM twitter.comment WHERE user_id = ?)) ORDER BY date desc;";
+            PreparedStatement ps1 = con.prepareStatement(query1);
+            ps1.setString(1, userid);
+            ResultSet rs = ps1.executeQuery();
+            while (rs.next()) {
+                String p_id = rs.getString("post_id");
+
+                String p_u_id = rs.getString("user_id");
+                Date p_date = rs.getDate("date");
+                String p_content = rs.getString("content");
+
+                String query2 = "SELECT name FROM User WHERE user_id =?;";
+                PreparedStatement ps2 = con.prepareStatement(query2);
+                ps2.setString(1, p_u_id);
+                ResultSet rs2 = ps2.executeQuery();
+
+                String username = null;
+                if (rs2.next()) {
+                    username = rs2.getString("name");
+                }
+
+                int p_num_of_likes = rs.getInt("num_of_likes");
+                int p_num_of_comments = rs.getInt("num_of_comments");
+                int p_num_of_retweets = rs.getInt("num_of_retweets");
+
+                Post a_post = new Post();
+                a_post.setUsername(username);
+                a_post.setUser_id(p_u_id);
+                a_post.setContent(p_content);
+                a_post.setDate(p_date);
+                a_post.setLike_num(p_num_of_likes);
+                a_post.setCommnet_num(p_num_of_comments);
+                a_post.setRetweet_num(p_num_of_retweets);
+                a_post.setPostid(p_id);
+                ls.add(a_post);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return ls;
+    }
     public List<Post> getRandomPosts() {
         List<Post> ls = new ArrayList<Post>();
 

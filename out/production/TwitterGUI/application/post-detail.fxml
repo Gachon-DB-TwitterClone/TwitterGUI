@@ -20,7 +20,7 @@
    <bottom>
       <AnchorPane prefHeight="114.0" prefWidth="500.0" style="-fx-border-color: #C0C0C0; -fx-border-width: 1px 0px 0px 0px; -fx-background-color: white;">
          <children>
-            <Button layoutX="76.0" layoutY="59.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="46.0" style="-fx-background-color: transparent;">
+            <Button layoutX="76.0" layoutY="59.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="35.0" prefWidth="46.0" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -32,7 +32,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="223.0" layoutY="59.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+            <Button layoutX="223.0" layoutY="59.0" mnemonicParsing="false" onAction="#switchToSearch" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
