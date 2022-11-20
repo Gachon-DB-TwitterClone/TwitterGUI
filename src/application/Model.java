@@ -41,25 +41,10 @@ public class Model {
         ResultSet rs = null;
         PreparedStatement pstm = null;
         try {
-        	String text = null;
-    		String p_id = null;
-    		
-    		stmt = con.createStatement();
-    		// to make post_id, need to know number of post
-    		String sql = "select count(post_id) from post group by user_id having user_id = \'" + LocalUser.id + "\'";
-    		rs = stmt.executeQuery(sql);
-    		if (rs.next()) {
-    			String p_num = String.valueOf(rs.getInt(1) + 1);
-    			p_id = "p" + p_num;
-    		}
-    		else {
-    			p_id = "p1";
-    		}
-
-    		text = content;
-    		sql = "insert into post (post_id, user_id, date, content) values (\'" 
-    				+ p_id + "\', \'" + LocalUser.id + "\', now(), \"" + text + "\")" ;
-    		pstm = con.prepareStatement(sql);
+    		String query1 = "insert into post (user_id, date, content) values (?, NOW(), ?)";
+    		pstm = con.prepareStatement(query1);
+            pstm.setString(1, LocalUser.id);
+            pstm.setString(2, content);
     		pstm.executeUpdate();
     		
         } catch (Exception e) {
@@ -75,6 +60,48 @@ public class Model {
         }
         
 	}
+
+    public void reply(String target_post_id, String content) {
+        // sql connection
+        Connection con = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost/twitter";
+            String sql_id = "root", pw = "12341234";
+            con = DriverManager.getConnection(url, sql_id, pw);
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+
+        // sql operation
+
+        Statement stmt = null;
+        ResultSet rs = null;
+        PreparedStatement pstm = null;
+        try {
+            String query1 = "insert into post (user_id, date, content, target_post_id) values (?, NOW(), ?, ?)";
+            pstm = con.prepareStatement(query1);
+            pstm.setString(1, LocalUser.id);
+            pstm.setString(2, content);
+            pstm.setString(3, target_post_id);
+            pstm.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // operation end
+        try {
+            if (stmt != null && !stmt.isClosed()) stmt.close();
+            if (rs != null && !rs.isClosed()) rs.close();
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+
+    }
 
     public boolean login(String id, String pwd) {
         // sql connection
