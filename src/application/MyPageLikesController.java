@@ -63,7 +63,7 @@ public class MyPageLikesController implements Initializable {
 	// switch to writh_post page
 	public void switchToWritepost(ActionEvent event) throws IOException{
 		
-		SceneData.PrevScene = ((Node)event.getSource()).getScene();
+		SceneData.PrevScene.add(((Node)event.getSource()).getScene());
 		
 		root = FXMLLoader.load(getClass().getResource("WritePost.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();

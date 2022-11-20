@@ -48,7 +48,7 @@ public class MyPageTweetsController implements Initializable {
 	// switch to main page
 	public void switchToMain(ActionEvent event) throws IOException{
 		
-		SceneData.PrevScene = ((Node)event.getSource()).getScene();
+		SceneData.PrevScene.add(((Node)event.getSource()).getScene());
 
 		root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
 
@@ -63,7 +63,7 @@ public class MyPageTweetsController implements Initializable {
 	// switch to search page
 	public void switchToSearch(ActionEvent event) throws IOException{
 		
-		SceneData.PrevScene = ((Node)event.getSource()).getScene();
+		SceneData.PrevScene.add(((Node)event.getSource()).getScene());
 		
 		root = FXMLLoader.load(getClass().getResource("search.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -76,7 +76,7 @@ public class MyPageTweetsController implements Initializable {
 	// switch to writh_post page
 	public void switchToWritepost(ActionEvent event) throws IOException{
 		
-		SceneData.PrevScene = ((Node)event.getSource()).getScene();
+		SceneData.PrevScene.add(((Node)event.getSource()).getScene());
 		
 		root = FXMLLoader.load(getClass().getResource("WritePost.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -89,7 +89,7 @@ public class MyPageTweetsController implements Initializable {
 	
 	public void switchToFollowing(MouseEvent event) throws IOException{
 		
-		SceneData.PrevScene = ((Node)event.getSource()).getScene();
+		SceneData.PrevScene.add(((Node)event.getSource()).getScene());
 		
 		root = FXMLLoader.load(getClass().getResource("following.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -100,7 +100,7 @@ public class MyPageTweetsController implements Initializable {
 	
 	public void switchToFollowers(MouseEvent event) throws IOException{
 		
-		SceneData.PrevScene = ((Node)event.getSource()).getScene();
+		SceneData.PrevScene.add(((Node)event.getSource()).getScene());
 		
 		root = FXMLLoader.load(getClass().getResource("followers.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();

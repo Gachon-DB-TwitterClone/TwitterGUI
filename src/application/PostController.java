@@ -60,7 +60,7 @@ public class PostController {
         LocalUser.seeing_postid = this.post_id;
         LocalUser.seeing_username = name.getText();
 
-        SceneData.PrevScene = ((Node) event.getSource()).getScene();
+        SceneData.PrevScene.add(((Node)event.getSource()).getScene());
 
         root = FXMLLoader.load(getClass().getResource("UserInfo-tweets.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -76,7 +76,7 @@ public class PostController {
         LocalUser.seeing_username = name.getText();
 
 
-        SceneData.PrevScene = ((Node) event.getSource()).getScene();
+        SceneData.PrevScene.add(((Node)event.getSource()).getScene());
 
         root = FXMLLoader.load(getClass().getResource("post-detail.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

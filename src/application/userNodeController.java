@@ -24,7 +24,7 @@ public class userNodeController {
 
     public void switchToUserInfo(MouseEvent event) throws IOException{
 		
-    	SceneData.PrevScene = ((Node)event.getSource()).getScene();
+    	SceneData.PrevScene.add(((Node)event.getSource()).getScene());
     	
 		root = FXMLLoader.load(getClass().getResource("UserInfo-tweets.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();

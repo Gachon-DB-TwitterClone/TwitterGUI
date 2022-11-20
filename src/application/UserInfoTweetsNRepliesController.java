@@ -53,26 +53,16 @@ public class UserInfoTweetsNRepliesController implements Initializable {
     private Parent root;
 
     public void switchPrevScene(ActionEvent event) throws IOException {
-
-        if (SceneData.PrevScene == ((Node) event.getSource()).getScene()) {
-            root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } else {
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = SceneData.PrevScene;
-            stage.setScene(scene);
-            stage.show();
-        }
-
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = SceneData.PrevScene.pop();
+        stage.setScene(scene);
+        stage.show();
     }
 
 
     public void switchToFollowing(ActionEvent event) throws IOException {
 
-        SceneData.PrevScene = ((Node) event.getSource()).getScene();
+        SceneData.PrevScene.add(((Node)event.getSource()).getScene());
 
         root = FXMLLoader.load(getClass().getResource("following.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -83,7 +73,7 @@ public class UserInfoTweetsNRepliesController implements Initializable {
 
     public void switchToFollowers(ActionEvent event) throws IOException {
 
-        SceneData.PrevScene = ((Node) event.getSource()).getScene();
+        SceneData.PrevScene.add(((Node)event.getSource()).getScene());
 
         root = FXMLLoader.load(getClass().getResource("followers.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -115,7 +105,7 @@ public class UserInfoTweetsNRepliesController implements Initializable {
     // switch to writh_post page
     public void switchToWritepost(ActionEvent event) throws IOException {
 
-        SceneData.PrevScene = ((Node) event.getSource()).getScene();
+        SceneData.PrevScene.add(((Node)event.getSource()).getScene());
 
         root = FXMLLoader.load(getClass().getResource("WritePost.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -128,7 +118,7 @@ public class UserInfoTweetsNRepliesController implements Initializable {
     // switch to main page
     public void switchToMain(ActionEvent event) throws IOException {
 
-        SceneData.PrevScene = ((Node) event.getSource()).getScene();
+        SceneData.PrevScene.add(((Node)event.getSource()).getScene());
 
         root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
 
@@ -142,7 +132,7 @@ public class UserInfoTweetsNRepliesController implements Initializable {
     // switch to search page
     public void switchToSearch(ActionEvent event) throws IOException {
 
-        SceneData.PrevScene = ((Node) event.getSource()).getScene();
+        SceneData.PrevScene.add(((Node)event.getSource()).getScene());
 
         root = FXMLLoader.load(getClass().getResource("search.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

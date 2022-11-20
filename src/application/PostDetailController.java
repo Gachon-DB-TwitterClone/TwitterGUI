@@ -55,7 +55,7 @@ public class PostDetailController implements Initializable{
 	
     public void switchPrevScene(ActionEvent event) throws IOException{
 		
-    	if (SceneData.PrevScene == null) {
+    	if (SceneData.PrevScene.empty()) {
 			root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
@@ -64,7 +64,7 @@ public class PostDetailController implements Initializable{
 		}
 		else {
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			scene = SceneData.PrevScene;
+			scene = SceneData.PrevScene.pop();
 			stage.setScene(scene);
 			stage.show();
 		}
@@ -97,7 +97,7 @@ public class PostDetailController implements Initializable{
  	// switch to search page
  	public void switchToSearch(ActionEvent event) throws IOException{
  		
- 		SceneData.PrevScene = ((Node)event.getSource()).getScene();
+ 		SceneData.PrevScene.add(((Node)event.getSource()).getScene());
  		
  		root = FXMLLoader.load(getClass().getResource("search.fxml"));
  		stage = (Stage)((Node)event.getSource()).getScene().getWindow();

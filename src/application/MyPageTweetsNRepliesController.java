@@ -59,7 +59,7 @@ public class MyPageTweetsNRepliesController implements Initializable {
 	// switch to writh_post page
 	public void switchToWritepost(ActionEvent event) throws IOException{
 		
-		SceneData.PrevScene = ((Node)event.getSource()).getScene();
+		SceneData.PrevScene.add(((Node)event.getSource()).getScene());
 		
 		root = FXMLLoader.load(getClass().getResource("WritePost.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -79,7 +79,7 @@ public class MyPageTweetsNRepliesController implements Initializable {
 		SceneData.MyPage_tweetsnreplies = ((Node)event.getSource()).getScene();
 		
 		if (SceneData.MyPage_tweets == null) {
-			root = FXMLLoader.load(getClass().getResource("³»Á¤º¸-tweets.fxml"));
+			root = FXMLLoader.load(getClass().getResource("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-tweets.fxml"));
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
