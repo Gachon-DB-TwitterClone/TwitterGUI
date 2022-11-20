@@ -251,7 +251,7 @@ public class Model {
         try {
 
 
-            String query1 = "SELECT * FROM twitter.post WHERE user_id =?;";
+            String query1 = "SELECT * FROM twitter.post WHERE user_id =? ORDER BY date desc;";
             PreparedStatement ps1 = con.prepareStatement(query1);
             ps1.setString(1, userid);
             ResultSet rs = ps1.executeQuery();
@@ -325,7 +325,11 @@ public class Model {
         try {
 
             stmt = con.createStatement();
-            String query = "select * from post order by rand() limit 5";
+            String query = "SELECT * FROM \n" +
+                    "(\n" +
+                    "    SELECT * FROM post ORDER BY rand() LIMIT 5\n" +
+                    ") T1\n" +
+                    "ORDER BY date DESC;";
             pstm = con.prepareStatement(query);
             rs = pstm.executeQuery();
 
@@ -388,7 +392,7 @@ public class Model {
             String url = "jdbc:mysql://localhost/twitter";
             String sql_id = "root", pw = "12341234";
             Connection con = DriverManager.getConnection(url, sql_id, pw);
-            String query1 = "SELECT * FROM twitter.post WHERE (post_id IN (SELECT post_id FROM twitter.likes WHERE user_id = ?) AND user_id IN (SELECT target_user_id FROM twitter.likes WHERE user_id = ?));";
+            String query1 = "SELECT * FROM twitter.post WHERE (post_id IN (SELECT post_id FROM twitter.likes WHERE user_id = ?) AND user_id IN (SELECT target_user_id FROM twitter.likes WHERE user_id = ?))  ORDER BY date desc;";
             PreparedStatement ps1 = con.prepareStatement(query1);
             ps1.setString(1, userid);
             ps1.setString(2, userid);
