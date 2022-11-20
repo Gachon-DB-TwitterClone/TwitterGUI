@@ -192,11 +192,17 @@ public class UserInfoLikesController implements Initializable {
     }
 
 
-    public void follow(ActionEvent event) {
+    public void follow(ActionEvent event) throws IOException {
         Model model = new Model();
         Boolean IsFollowed = model.follow_user(LocalUser.id, LocalUser.seeing_userid);
 
         changeButtonState(IsFollowed);
+
+        root = FXMLLoader.load(getClass().getResource("UserInfo-tnr.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 

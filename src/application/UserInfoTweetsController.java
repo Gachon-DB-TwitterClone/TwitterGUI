@@ -23,7 +23,6 @@ public class UserInfoTweetsController implements Initializable {
     public Button btnFollow;
 
 
-
     //
     // Scene Controller
     //
@@ -51,7 +50,7 @@ public class UserInfoTweetsController implements Initializable {
 
     public void switchToFollowing(ActionEvent event) throws IOException {
 
-        SceneData.PrevScene.add(((Node)event.getSource()).getScene());
+        SceneData.PrevScene.add(((Node) event.getSource()).getScene());
 
         root = FXMLLoader.load(getClass().getResource("following.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -62,7 +61,7 @@ public class UserInfoTweetsController implements Initializable {
 
     public void switchToFollowers(ActionEvent event) throws IOException {
 
-        SceneData.PrevScene.add(((Node)event.getSource()).getScene());
+        SceneData.PrevScene.add(((Node) event.getSource()).getScene());
 
         root = FXMLLoader.load(getClass().getResource("followers.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -94,7 +93,7 @@ public class UserInfoTweetsController implements Initializable {
     // switch to writh_post page
     public void switchToWritepost(ActionEvent event) throws IOException {
 
-        SceneData.PrevScene.add(((Node)event.getSource()).getScene());
+        SceneData.PrevScene.add(((Node) event.getSource()).getScene());
 
         root = FXMLLoader.load(getClass().getResource("WritePost.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -107,7 +106,7 @@ public class UserInfoTweetsController implements Initializable {
     // switch to main page
     public void switchToMain(ActionEvent event) throws IOException {
 
-        SceneData.PrevScene.add(((Node)event.getSource()).getScene());
+        SceneData.PrevScene.add(((Node) event.getSource()).getScene());
 
         root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
 
@@ -121,7 +120,7 @@ public class UserInfoTweetsController implements Initializable {
     // switch to search page
     public void switchToSearch(ActionEvent event) throws IOException {
 
-        SceneData.PrevScene.add(((Node)event.getSource()).getScene());
+        SceneData.PrevScene.add(((Node) event.getSource()).getScene());
 
         root = FXMLLoader.load(getClass().getResource("search.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -182,8 +181,8 @@ public class UserInfoTweetsController implements Initializable {
 
     }
 
-    public void changeButtonState(Boolean IsFollow){
-        if(IsFollow){
+    public void changeButtonState(Boolean IsFollow) {
+        if (IsFollow) {
             btnFollow.setText("Following");
             btnFollow.setStyle("-fx-background-color: white; -fx-background-radius: 30px; -fx-border-color: #C0C0C0; -fx-border-radius: 30px; -fx-text-fill: black");
         } else {
@@ -194,18 +193,24 @@ public class UserInfoTweetsController implements Initializable {
     }
 
 
-    public void follow(ActionEvent event) {
+    public void follow(ActionEvent event) throws IOException {
         Model model = new Model();
         Boolean IsFollowed = model.follow_user(LocalUser.id, LocalUser.seeing_userid);
 
         changeButtonState(IsFollowed);
+
+        root = FXMLLoader.load(getClass().getResource("UserInfo-tweets.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public List<Post> getPosts() {
         List<Post> posts = new ArrayList<Post>();
 
         Model model = new Model();
-		posts = model.getUserPosts(LocalUser.seeing_userid);
+        posts = model.getUserPosts(LocalUser.seeing_userid);
 
         return posts;
     }
