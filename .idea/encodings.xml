@@ -9,6 +9,9 @@
     <file url="file://$PROJECT_DIR$/src/application/UserInfo-tweets.fxml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/application/followers.fxml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/application/following.fxml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/application/myinfo-likes.fxml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/application/myinfo-tnr.fxml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/application/myinfo-tweet.fxml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/application/post.fxml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/application/search.fxml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/application/서치.fxml" charset="UTF-8" />
