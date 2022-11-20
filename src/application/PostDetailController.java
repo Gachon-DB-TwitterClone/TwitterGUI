@@ -167,10 +167,17 @@ public class PostDetailController implements Initializable{
 
 	public TextField commentField;
 
-	public void WriteComment(ActionEvent event) {
+	public void WriteComment(ActionEvent event) throws IOException{
 
 		Model model = new Model();
 		model.writeComment(LocalUser.id, commentField.getText(), LocalUser.seeing_postid);
+
+		root = FXMLLoader.load(getClass().getResource("post-detail.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+
 	}
 }
     

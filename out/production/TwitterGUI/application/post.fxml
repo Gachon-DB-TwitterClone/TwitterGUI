@@ -114,7 +114,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="204.0" layoutY="6.0" mnemonicParsing="false" onAction="#switchToPostDetail" prefHeight="35.0" prefWidth="46.0" style="-fx-background-color: transparent;">
+            <Button layoutX="204.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#switchToPostDetail" prefHeight="35.0" prefWidth="46.0" style="-fx-background-color: transparent;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
