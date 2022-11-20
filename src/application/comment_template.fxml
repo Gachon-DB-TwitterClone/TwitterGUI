@@ -103,7 +103,7 @@
       </HBox>
       <AnchorPane prefHeight="50.0" prefWidth="500.0">
          <children>
-            <Button layoutX="46.0" layoutY="6.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="46.0" style="-fx-background-color: transparent;">
+            <Button layoutX="46.0" layoutY="6.0" mnemonicParsing="false" onAction="#likeComment" prefHeight="35.0" prefWidth="46.0" style="-fx-background-color: transparent;">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
