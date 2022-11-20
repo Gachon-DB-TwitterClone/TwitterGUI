@@ -35,9 +35,6 @@ public class MyPageLikesController implements Initializable {
 	
 	// switch to main page
 	public void switchToMain(ActionEvent event) throws IOException{
-		
-		SceneData.MyPage_likes = (Scene)((Node)event.getSource()).getScene();
-
 		root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
 
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -50,8 +47,7 @@ public class MyPageLikesController implements Initializable {
 	// switch to search page
 	public void switchToSearch(ActionEvent event) throws IOException{
 		
-		SceneData.MyPage_likes = ((Node)event.getSource()).getScene();
-		
+
 		root = FXMLLoader.load(getClass().getResource("search.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -85,40 +81,21 @@ public class MyPageLikesController implements Initializable {
 	
 	// switch to MY page - tweets & replies
 	public void switchToMyTweetsNReplies(ActionEvent event) throws IOException{
-		SceneData.MyPage_likes = ((Node)event.getSource()).getScene();
-		
-		if (SceneData.MyPage_tweetsnreplies == null) {
-			root = FXMLLoader.load(getClass().getResource("myinfo-tnr.fxml"));
-			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
-		}
-		else {
-			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			scene = SceneData.MyPage_tweetsnreplies;
-			stage.setScene(scene);
-			stage.show();
-		}
+		root = FXMLLoader.load(getClass().getResource("myinfo-tnr.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
 	}
 		
 	// switch to MY page - tweets
 	public void switchToMyTweets(ActionEvent event) throws IOException{
-		SceneData.MyPage_likes = ((Node)event.getSource()).getScene();
-		
-		if (SceneData.MyPage_tweets == null) {
-			root = FXMLLoader.load(getClass().getResource("myinfo-tweet.fxml"));
-			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
-		}
-		else {
-			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			scene = SceneData.MyPage_tweets;
-			stage.setScene(scene);
-			stage.show();
-		}
+
+		root = FXMLLoader.load(getClass().getResource("myinfo-tweet.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
 	}
 	
 	
@@ -148,7 +125,7 @@ public class MyPageLikesController implements Initializable {
 
 				VBox newBox = fxmlLoader.load();
 				PostController postController = fxmlLoader.getController();
-				postController.setPost(post.getNickname(), post.getUser_id(), post.getContent(), post.getImg(), post.getLike_num(), post.getCommnet_num(), post.getRetweet_num(),  post.getPostid());
+				postController.setPost(post.getUsername(), post.getUser_id(), post.getContent(), post.getImg(), post.getLike_num(), post.getCommnet_num(), post.getRetweet_num(),  post.getPostid());
 
 				PostsContainer.getChildren().add(newBox);
 

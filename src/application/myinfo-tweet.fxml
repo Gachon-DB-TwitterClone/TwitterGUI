@@ -22,7 +22,7 @@
          <children>
             <AnchorPane prefHeight="271.0" prefWidth="500.0" style="-fx-background-color: #00acee;">
                <children>
-                  <Button layoutX="418.0" layoutY="19.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                  <Button layoutX="418.0" layoutY="19.0" mnemonicParsing="false" onAction="#switchToSearch" style="-fx-background-color: transparent;">
                      <graphic>
                         <StackPane prefHeight="13.0" prefWidth="55.0">
                            <children>

@@ -102,7 +102,7 @@
                               <Image url="@like.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                        <ImageView fx:id="iLike" fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" visible="false">
                            <image>
                               <Image url="@already_like.png" />
                            </image>
@@ -138,7 +138,7 @@
                               <Image url="@retweet.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                        <ImageView fx:id="iRetweet" fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" visible="false">
                            <image>
                               <Image url="@complete_retweet.png" />
                            </image>

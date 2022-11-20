@@ -32,8 +32,6 @@ public class MyPageTweetsNRepliesController implements Initializable {
 	// switch to main page
 	public void switchToMain(ActionEvent event) throws IOException{
 
-		SceneData.MyPage_tweetsnreplies = (Scene)((Node)event.getSource()).getScene();
-
 		root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
 
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -44,9 +42,7 @@ public class MyPageTweetsNRepliesController implements Initializable {
 	
 	// switch to search page
 	public void switchToSearch(ActionEvent event) throws IOException{
-		
-		SceneData.MyPage_tweetsnreplies = ((Node)event.getSource()).getScene();
-		
+
 		root = FXMLLoader.load(getClass().getResource("search.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -76,40 +72,20 @@ public class MyPageTweetsNRepliesController implements Initializable {
 	
 	// switch to MY page - tweets
 	public void switchToMyTweets(ActionEvent event) throws IOException{
-		SceneData.MyPage_tweetsnreplies = ((Node)event.getSource()).getScene();
-		
-		if (SceneData.MyPage_tweets == null) {
-			root = FXMLLoader.load(getClass().getResource("������-tweets.fxml"));
-			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
-		}
-		else {
-			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			scene = SceneData.MyPage_tweets;
-			stage.setScene(scene);
-			stage.show();
-		}
+		root = FXMLLoader.load(getClass().getResource("myinfo-tweet.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
 	}
 		
 	// switch to MY page - likes
 	public void switchToMyLikes(ActionEvent event) throws IOException{
-		SceneData.MyPage_tweetsnreplies = ((Node)event.getSource()).getScene();
-		
-		if (SceneData.MyPage_likes == null) {
-			root = FXMLLoader.load(getClass().getResource("myinfo-likes.fxml"));
-			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
-		}
-		else {
-			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			scene = SceneData.MyPage_likes;
-			stage.setScene(scene);
-			stage.show();
-		}
+		root = FXMLLoader.load(getClass().getResource("myinfo-likes.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
 	}
 
 	

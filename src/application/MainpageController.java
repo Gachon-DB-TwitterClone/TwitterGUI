@@ -84,7 +84,7 @@ public class MainpageController implements Initializable {
 
                 VBox newBox = fxmlLoader.load();
                 PostController postController = fxmlLoader.getController();
-                postController.setPost(post.getNickname(), post.getUser_id(), post.getContent(), post.getImg(), post.getLike_num(), post.getCommnet_num(), post.getRetweet_num(), post.getPostid());
+                postController.setPost(post.getUsername(), post.getUser_id(), post.getContent(), post.getImg(), post.getLike_num(), post.getCommnet_num(), post.getRetweet_num(), post.getPostid());
 
                 PostsContainer.getChildren().add(newBox);
 

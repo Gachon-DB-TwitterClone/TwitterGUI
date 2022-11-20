@@ -278,7 +278,7 @@ public class Model {
                 int p_num_of_retweets= rs.getInt("num_of_retweets");
 
                 Post a_post = new Post();
-                a_post.setNickname(username);
+                a_post.setUsername(username);
                 a_post.setUser_id(p_u_id);
                 a_post.setContent(p_content);
                 a_post.setDate(p_date);
@@ -356,7 +356,7 @@ public class Model {
                 int p_num_of_retweets= rs.getInt("num_of_retweets");
 
                 Post a_post = new Post();
-                a_post.setNickname(username);
+                a_post.setUsername(username);
                 a_post.setUser_id(p_u_id);
                 a_post.setContent(p_content);
                 a_post.setDate(p_date);
@@ -392,10 +392,9 @@ public class Model {
             String url = "jdbc:mysql://localhost/twitter";
             String sql_id = "root", pw = "12341234";
             Connection con = DriverManager.getConnection(url, sql_id, pw);
-            String query1 = "SELECT * FROM twitter.post WHERE (post_id IN (SELECT post_id FROM twitter.likes WHERE user_id = ?) AND user_id IN (SELECT target_user_id FROM twitter.likes WHERE user_id = ?))  ORDER BY date desc;";
+            String query1 = "SELECT * FROM twitter.post WHERE (post_id IN (SELECT post_id FROM twitter.likes WHERE user_id = ?)) ORDER BY date desc;";
             PreparedStatement ps1 = con.prepareStatement(query1);
             ps1.setString(1, userid);
-            ps1.setString(2, userid);
             ResultSet rs = ps1.executeQuery();
             while (rs.next()) {
                 String p_id = rs.getString("post_id");
@@ -419,7 +418,7 @@ public class Model {
                 int p_num_of_retweets = rs.getInt("num_of_retweets");
 
                 Post a_post = new Post();
-                a_post.setNickname(username);
+                a_post.setUsername(username);
                 a_post.setUser_id(p_u_id);
                 a_post.setContent(p_content);
                 a_post.setDate(p_date);
@@ -473,7 +472,7 @@ public class Model {
                 int p_num_of_comments = rs.getInt("num_of_comments");
                 int p_num_of_retweets = rs.getInt("num_of_retweets");
 
-                post.setNickname(username);
+                post.setUsername(username);
                 post.setUser_id(p_u_id);
                 post.setContent(p_content);
                 post.setDate(p_date);
@@ -608,7 +607,7 @@ public class Model {
         return user;
     }
 
-    public Boolean like_post(){
+    public Boolean like_post(String user_id, String target_user_id, String post_id){
 
         Boolean IsSuccess = false;
 
@@ -617,34 +616,87 @@ public class Model {
             String url = "jdbc:mysql://localhost/twitter";
             String sql_id = "root", pw = "12341234";
             Connection con = DriverManager.getConnection(url, sql_id, pw);
-            String query1 = "select * from follows where user_id = ?;";
-            PreparedStatement ps1 = con.prepareStatement(query1);
-            ps1.setString(1, LocalUser.id);
-            ResultSet rs = ps1.executeQuery();
-            while (rs.next()) {
-                String user_id = rs.getString("target_user_id");
-                String query2 = "UPDATE twitter.post SET num_of_likes = (select count(like_id) from likes where target_user_id = ? and post_id = ?) WHERE user_id = ? AND post_id = ?;";
-                PreparedStatement ps2 = con.prepareStatement(query2);
-                ps2.setString(1, user_id);
-                ResultSet rs2 = ps2.executeQuery();
+            if(!isLiked(user_id, target_user_id, post_id)){
+//                String query2 = "select count(like_id) from likes where user_id = ?;";
+//                PreparedStatement ps2 = con.prepareStatement(query2);
+//                ps2.setString(1, user_id);
+//                ResultSet rs2 = ps2.executeQuery();
+//                if(rs2.next()){
+//                    String last_like_id_num = String.valueOf(rs2.getInt(1));
+//                    int new_num_likes = rs2.getInt(1) + 1;
+//                    String like_id = "l" + String.valueOf(new_num_likes);
 
-                String username = null;
-                if (rs2.next()) {
-                    username = rs2.getString("name");
+                    String query3 = "insert into likes (user_id, target_user_id, date, post_id) \n" +
+                            "values (?, ?, now(),?);";
+                    PreparedStatement ps3 = con.prepareStatement(query3);
+                    ps3.setString(1, user_id);
+                    ps3.setString(2, target_user_id);
+                    ps3.setString(3, post_id);
+                    int rs3 = ps3.executeUpdate();
+
+                    if(rs3 > 0){
+                        IsSuccess = true;
+                    }
+
+//                }
+
+            } else { // 좋아요 있는 경우
+                String query4 = "delete from likes where user_id = ? and target_user_id = ? and post_id = ?;";
+                PreparedStatement ps4 = con.prepareStatement(query4);
+                ps4.setString(1, user_id);
+                ps4.setString(2, target_user_id);
+                ps4.setString(3, post_id);
+                int rs4 = ps4.executeUpdate();
+
+                if(rs4 > 0){
+                    IsSuccess = false;
                 }
 
-                User newUser = new User();
-                newUser.setName(username);
-                newUser.setUser_id(user_id);
-
-
             }
+
+            String query5 = "UPDATE twitter.post SET num_of_likes = (select count(like_id) from likes where target_user_id = ? and post_id = ?) WHERE user_id = ? AND post_id = ?;";
+            PreparedStatement ps5 = con.prepareStatement(query5);
+            ps5.setString(1, target_user_id);
+            ps5.setString(2, post_id);
+            ps5.setString(3, target_user_id);
+            ps5.setString(4, post_id);
+            int rs5 = ps5.executeUpdate();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return IsSuccess;
+    }
+
+
+    public Boolean isLiked(String user_id, String target_user_id, String post_id){
+
+        Boolean IsLiked = false;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost/twitter";
+            String sql_id = "root", pw = "12341234";
+            Connection con = DriverManager.getConnection(url, sql_id, pw);
+            String query1 = "select like_id from likes where user_id = ? and target_user_id = ? and post_id = ?;";
+            PreparedStatement ps1 = con.prepareStatement(query1);
+            ps1.setString(1, user_id);
+            ps1.setString(2, target_user_id);
+            ps1.setString(3, post_id);
+            ResultSet rs = ps1.executeQuery();
+            if(rs.next()){
+                IsLiked = true;
+
+            } else { // 좋아요 있는 경우
+                IsLiked = false;
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return IsLiked;
     }
 
 }

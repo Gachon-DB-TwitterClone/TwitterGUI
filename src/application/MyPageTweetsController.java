@@ -111,40 +111,22 @@ public class MyPageTweetsController implements Initializable {
 	
 	// switch to MY page - tweets & replies
 	public void switchToMyTweetsNReplies(ActionEvent event) throws IOException{
-		SceneData.MyPage_tweets = ((Node)event.getSource()).getScene();
-		
-		if (SceneData.MyPage_tweetsnreplies == null) {
-			root = FXMLLoader.load(getClass().getResource("myinfo-tnr.fxml"));
-			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
-		}
-		else {
-			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			scene = SceneData.MyPage_tweetsnreplies;
-			stage.setScene(scene);
-			stage.show();
-		}
+
+		root = FXMLLoader.load(getClass().getResource("myinfo-tnr.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
 	}
 		
 	// switch to MY page - likes
 	public void switchToMyLikes(ActionEvent event) throws IOException{
-		SceneData.MyPage_tweets = ((Node)event.getSource()).getScene();
-		
-		if (SceneData.MyPage_likes == null) {
-			root = FXMLLoader.load(getClass().getResource("myinfo-likes.fxml"));
-			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
-		}
-		else {
-			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			scene = SceneData.MyPage_likes;
-			stage.setScene(scene);
-			stage.show();
-		}
+
+		root = FXMLLoader.load(getClass().getResource("myinfo-likes.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
 	}
 
 
@@ -176,7 +158,7 @@ public class MyPageTweetsController implements Initializable {
 
 				VBox newBox = fxmlLoader.load();
 				PostController postController = fxmlLoader.getController();
-				postController.setPost(post.getNickname(), post.getUser_id(), post.getContent(), post.getImg(), post.getLike_num(), post.getCommnet_num(), post.getRetweet_num(),  post.getPostid());
+				postController.setPost(post.getUsername(), post.getUser_id(), post.getContent(), post.getImg(), post.getLike_num(), post.getCommnet_num(), post.getRetweet_num(),  post.getPostid());
 
 				PostsContainer.getChildren().add(newBox);
 

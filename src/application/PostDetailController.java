@@ -114,7 +114,7 @@ public class PostDetailController implements Initializable{
 
 		Post post = model.getPostDetail(LocalUser.seeing_postid, LocalUser.seeing_userid);
 
-		this.name.setText(post.getNickname());
+		this.name.setText(post.getUsername());
 		this.user_id.setText(post.getUser_id());
 		this.content.setText(post.getContent());
 		this.img.setImage(post.getImg());

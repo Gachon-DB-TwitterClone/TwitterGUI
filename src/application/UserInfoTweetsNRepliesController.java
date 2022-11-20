@@ -15,7 +15,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -176,7 +175,7 @@ public class UserInfoTweetsNRepliesController implements Initializable {
 
                 VBox newBox = fxmlLoader.load();
                 PostController postController = fxmlLoader.getController();
-                postController.setPost(post.getNickname(), post.getUser_id(), post.getContent(), post.getImg(), post.getLike_num(), post.getCommnet_num(), post.getRetweet_num(), post.getPostid());
+                postController.setPost(post.getUsername(), post.getUser_id(), post.getContent(), post.getImg(), post.getLike_num(), post.getCommnet_num(), post.getRetweet_num(), post.getPostid());
 
                 PostsContainer.getChildren().add(newBox);
 

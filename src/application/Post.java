@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Post {
 
-    private String nickname;
+    private String username;
     private String user_id;
     private String content;
     private Image img;
@@ -34,12 +34,12 @@ public class Post {
     }
 
 
-    public String getNickname() {
-        return nickname;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getUser_id() {
