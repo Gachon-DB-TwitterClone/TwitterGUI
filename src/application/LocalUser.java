@@ -7,7 +7,10 @@ public class LocalUser {
 	public static String seeing_userid = "";
 
 	public static String seeing_postid = "";
-	
-	// 닉네임 만약 닉네임 있으면 name 대신 
+
+	public static String seeing_username = "";
+
+
+	// 닉네임 만약 닉네임 있으면 name 대신
 	
 }

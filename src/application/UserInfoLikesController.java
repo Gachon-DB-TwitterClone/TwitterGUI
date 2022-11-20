@@ -168,8 +168,8 @@ public class UserInfoLikesController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Model model = new Model();
-		u_id.setText(LocalUser.id);
-		u_name.setText(LocalUser.name);
+		u_id.setText(LocalUser.seeing_userid);
+		u_name.setText(LocalUser.seeing_username);
 		following.setText(String.valueOf((model.getFollowingById(LocalUser.seeing_userid).size())));
 		follower.setText(String.valueOf((model.getFollowerById(LocalUser.seeing_userid).size())));
 
@@ -203,12 +203,12 @@ public class UserInfoLikesController implements Initializable {
 
 	}
 
-	public List<Post> getPosts(){
+	public List<Post> getPosts() {
 		List<Post> posts = new ArrayList<Post>();
 
 		Model model = new Model();
-//		posts = model.getUserLikedPost(userid);
+		posts = model.getUserLikedPosts(LocalUser.seeing_userid);
 
-		return  posts;
+		return posts;
 	}
 }

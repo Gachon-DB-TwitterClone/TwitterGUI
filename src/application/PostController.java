@@ -58,6 +58,7 @@ public class PostController {
     public void switchToUserInfo(MouseEvent event) throws IOException {
         LocalUser.seeing_userid = user_id.getText();
         LocalUser.seeing_postid = this.post_id;
+        LocalUser.seeing_username = name.getText();
 
         SceneData.PrevScene = ((Node) event.getSource()).getScene();
 
@@ -70,9 +71,9 @@ public class PostController {
     }
 
     public void switchToPostDetail(MouseEvent event) throws IOException {
-
         LocalUser.seeing_userid = user_id.getText();
         LocalUser.seeing_postid = this.post_id;
+        LocalUser.seeing_username = name.getText();
 
 
         SceneData.PrevScene = ((Node) event.getSource()).getScene();

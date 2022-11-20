@@ -65,14 +65,14 @@
                         <Image url="@user.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="44.0" layoutY="24.0" text="Nograss">
+                  <Label fx:id="u_name" layoutX="44.0" layoutY="24.0" text="Nograss">
                      <font>
                         <Font name="Calibri Bold" size="26.0" />
                      </font>
                   </Label>
                   <HBox layoutX="48.0" layoutY="82.0" prefHeight="41.0" prefWidth="364.0">
                      <children>
-                        <Label text="100">
+                        <Label fx:id="following" text="100">
                            <HBox.margin>
                               <Insets top="5.0" />
                            </HBox.margin>
@@ -88,7 +88,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Label text="233">
+                        <Label fx:id="follower" text="233">
                            <HBox.margin>
                               <Insets left="30.0" top="5.0" />
                            </HBox.margin>
@@ -151,7 +151,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <HBox layoutX="43.0" layoutY="55.0">
+                  <HBox layoutX="47.0" layoutY="55.0">
                      <children>
                         <Label text="\@" textFill="#757575">
                            <font>
@@ -225,11 +225,7 @@
             </Button>
             <ScrollPane hbarPolicy="NEVER" prefHeight="397.0" prefWidth="500.0" vbarPolicy="NEVER">
                <content>
-                  <AnchorPane prefHeight="397.0" prefWidth="500.0" style="-fx-background-color: white;">
-                     <children>
-                        <VBox fx:id="PostsContainer" prefWidth="500.0" />
-                     </children>
-                  </AnchorPane>
+                  <VBox fx:id="PostsContainer" prefWidth="500.0" />
                </content>
             </ScrollPane>
             <Button layoutX="418.0" layoutY="321.0" mnemonicParsing="false" onAction="#switchToWritepost" style="-fx-background-color: transparent;">
