@@ -48,7 +48,6 @@ public class MainpageController implements Initializable {
     // switch to search page
     public void switchToSearch(ActionEvent event) throws IOException {
 
-//		SceneData.MainScene = ((Node)event.getSource()).getScene();
 
         root = FXMLLoader.load(getClass().getResource("search.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -61,7 +60,6 @@ public class MainpageController implements Initializable {
     // switch to writh_post page
     public void switchToWritepost(ActionEvent event) throws IOException {
 
-//		SceneData.MainScene = ((Node)event.getSource()).getScene();
 
         root = FXMLLoader.load(getClass().getResource("WritePost.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

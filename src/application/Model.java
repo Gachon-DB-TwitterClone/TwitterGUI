@@ -604,5 +604,44 @@ public class Model {
         return user;
     }
 
+    public Boolean like_post(){
+
+        Boolean IsSuccess = false;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost/twitter";
+            String sql_id = "root", pw = "12341234";
+            Connection con = DriverManager.getConnection(url, sql_id, pw);
+            String query1 = "select * from follows where user_id = ?;";
+            PreparedStatement ps1 = con.prepareStatement(query1);
+            ps1.setString(1, LocalUser.id);
+            ResultSet rs = ps1.executeQuery();
+            while (rs.next()) {
+                String user_id = rs.getString("target_user_id");
+                String query2 = "UPDATE twitter.post SET num_of_likes = (select count(like_id) from likes where target_user_id = ? and post_id = ?) WHERE user_id = ? AND post_id = ?;";
+                PreparedStatement ps2 = con.prepareStatement(query2);
+                ps2.setString(1, user_id);
+                ResultSet rs2 = ps2.executeQuery();
+
+                String username = null;
+                if (rs2.next()) {
+                    username = rs2.getString("name");
+                }
+
+                User newUser = new User();
+                newUser.setName(username);
+                newUser.setUser_id(user_id);
+
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return IsSuccess;
+    }
+
 }
 
