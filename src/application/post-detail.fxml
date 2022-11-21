@@ -175,7 +175,7 @@
                                           <Insets bottom="10.0" left="20.0" top="20.0" />
                                        </VBox.margin>
                                        <children>
-                                          <Label text="23:05 . 2022/11/10" textFill="#7c7c7c">
+                                          <Label fx:id="datetime" text="23:05 . 2022/11/10" textFill="#7c7c7c">
                                              <font>
                                                 <Font name="Calibri" size="18.0" />
                                              </font>

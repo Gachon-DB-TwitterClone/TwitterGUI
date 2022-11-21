@@ -2,6 +2,8 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -38,8 +40,9 @@ public class PostDetailController implements Initializable{
     public ImageView iLike;
     @FXML
     public ImageView iRetweet;
+    public Label datetime;
 
-	private String post_id;
+    private String post_id;
     
     
     @FXML
@@ -135,6 +138,12 @@ public class PostDetailController implements Initializable{
 		this.img.setImage(post.getImg());
 		this.num_of_likes.setText(String.valueOf(post.getLike_num()));
 		this.num_of_comments.setText(String.valueOf(post.getCommnet_num()));
+
+		String pattern = "yyyy/MM/dd";
+		DateFormat df = new SimpleDateFormat(pattern);
+		String DateAsString = df.format(post.getDate());
+		this.datetime.setText(DateAsString);
+
 
 		this.post_id = post.getPostid();
 
